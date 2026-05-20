@@ -1,0 +1,18 @@
+import { createClient } from '@supabase/supabase-js'
+import * as dotenv from 'dotenv'
+import * as path from 'path'
+
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') })
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY! // We need service role to list users, or just use anon to check
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+
+async function run() {
+  // If we don't have service role key, we can't list users easily. 
+  // Let's just create a test query.
+  console.log("Checking connection...");
+}
+
+run();
