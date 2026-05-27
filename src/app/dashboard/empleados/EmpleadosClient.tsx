@@ -109,8 +109,13 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
       if (newUrl) avatar_url = newUrl
     }
 
+    const payload: any = { ...form, avatar_url }
+    if (!payload.fecha_nacimiento) payload.fecha_nacimiento = null
+    if (!payload.fecha_ingreso_ministerio) payload.fecha_ingreso_ministerio = null
+    if (!payload.fecha_ingreso_admin_publica) payload.fecha_ingreso_admin_publica = null
+
     if (isEditing && selectedEmployee) {
-      const { data, error } = await supabase.from('empleados').update({ ...form, avatar_url }).eq('id', selectedEmployee.id).select('*, departamentos(nombre, servicio_id)')
+      const { data, error } = await supabase.from('empleados').update(payload).eq('id', selectedEmployee.id).select('*, departamentos(nombre, servicio_id)')
       if (data && !error) {
         setEmpleados(empleados.map((emp: any) => emp.id === selectedEmployee.id ? data[0] : emp))
         setSelectedEmployee(data[0]) // Update the selected employee details view
@@ -121,7 +126,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
         setIsEditing(false)
       } else alert(error?.message || 'Error al actualizar empleado.')
     } else {
-      const { data, error } = await supabase.from('empleados').insert([{ ...form, avatar_url }]).select('*, departamentos(nombre, servicio_id)')
+      const { data, error } = await supabase.from('empleados').insert([payload]).select('*, departamentos(nombre, servicio_id)')
       if (data && !error) {
         setEmpleados([data[0], ...empleados])
         setIsModalOpen(false)

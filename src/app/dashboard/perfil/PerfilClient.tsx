@@ -52,9 +52,14 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
     setError('')
     setSuccess('')
 
+    const payload: any = { ...form }
+    if (!payload.fecha_nacimiento) payload.fecha_nacimiento = null
+    if (!payload.fecha_ingreso_ministerio) payload.fecha_ingreso_ministerio = null
+    if (!payload.fecha_ingreso_admin_publica) payload.fecha_ingreso_admin_publica = null
+
     const { error: updateError } = await supabase
       .from('perfiles')
-      .update(form)
+      .update(payload)
       .eq('id', perfil.id)
 
     if (updateError) {
