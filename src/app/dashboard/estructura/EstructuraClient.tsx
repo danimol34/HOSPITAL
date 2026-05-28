@@ -138,7 +138,7 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                     </div>
                     
                     <div className="mt-4 z-10">
-                      <p className="text-xs text-sys-text-dark">
+                      <p className="text-sm font-medium text-sys-primary">
                         {departamentos.filter((d: any) => d.servicio_id === s.id).length} Departamentos registrados
                       </p>
                     </div>
@@ -205,7 +205,7 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                     </div>
                     
                     <div className="mt-4">
-                      <p className="text-xs text-sys-text-dark">
+                      <p className="text-sm font-medium text-sys-visor">
                         {d.empleados ? d.empleados.length : 0} Empleado{d.empleados?.length !== 1 ? 's' : ''} registrado{d.empleados?.length !== 1 ? 's' : ''}
                       </p>
                     </div>
