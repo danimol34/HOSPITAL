@@ -185,23 +185,31 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                     <button onClick={() => setEditDeptoId(null)} className="text-sys-text-dark hover:text-sys-text"><X size={18} /></button>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sys-visor/20 text-sys-visor">
-                        <Folder size={20} />
+                  <>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sys-visor/20 text-sys-visor">
+                          <Folder size={20} />
+                        </div>
+                        <h3 className="font-semibold text-sys-text">{d.nombre}</h3>
                       </div>
-                      <h3 className="font-semibold text-sys-text">{d.nombre}</h3>
+                      
+                      <div className="flex items-center gap-2">
+                        <button onClick={() => { setEditDeptoId(d.id); setEditDeptoNombre(d.nombre); }} className="text-sys-text-dark hover:text-sys-visor transition-colors" title="Editar">
+                          <Pencil size={16} />
+                        </button>
+                        <button onClick={() => handleEliminarDepartamento(d.id)} className="text-sys-text-dark hover:text-sys-danger transition-colors" title="Eliminar">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </div>
                     
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => { setEditDeptoId(d.id); setEditDeptoNombre(d.nombre); }} className="text-sys-text-dark hover:text-sys-visor transition-colors" title="Editar">
-                        <Pencil size={16} />
-                      </button>
-                      <button onClick={() => handleEliminarDepartamento(d.id)} className="text-sys-text-dark hover:text-sys-danger transition-colors" title="Eliminar">
-                        <Trash2 size={16} />
-                      </button>
+                    <div className="mt-4">
+                      <p className="text-xs text-sys-text-dark">
+                        {d.empleados ? d.empleados.length : 0} Empleado{d.empleados?.length !== 1 ? 's' : ''} registrado{d.empleados?.length !== 1 ? 's' : ''}
+                      </p>
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             ))}

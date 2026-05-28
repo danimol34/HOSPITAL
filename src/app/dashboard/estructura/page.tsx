@@ -12,7 +12,7 @@ export default async function EstructuraPage() {
 
   const { data: departamentos } = await supabase
     .from('departamentos')
-    .select('*, servicios(nombre)')
+    .select('*, servicios(nombre), empleados(id)')
     .order('created_at', { ascending: true })
 
   return (
