@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Plus, Trash2, Pencil, Check, X, Users, ChevronLeft, Building2 } from 'lucide-react'
+import { Plus, Trash2, Pencil, Check, X, Circle, ChevronLeft, Building2 } from 'lucide-react'
 
 export default function EstructuraClient({ initialServicios, initialDepartamentos }: any) {
   const supabase = createClient()
@@ -189,7 +189,7 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sys-visor/20 text-sys-visor">
-                          <Users size={20} />
+                          <Circle size={14} fill="currentColor" />
                         </div>
                         <h3 className="font-semibold text-sys-text">{d.nombre}</h3>
                       </div>
