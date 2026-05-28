@@ -24,8 +24,8 @@ export default async function UsuariosPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Gestión de Usuarios</h1>
-        <p className="text-sm text-zinc-400">Administra el acceso al sistema (Administradores y Visores).</p>
+        <h1 className="text-2xl font-bold text-sys-text">Gestión de Usuarios</h1>
+        <p className="text-sm text-sys-text-muted">Administra el acceso al sistema (Administradores y Visores).</p>
       </div>
       
       <UsuariosClient initialUsuarios={perfiles || []} />

@@ -26,8 +26,8 @@ export async function Sidebar() {
   }
 
   return (
-    <div className="hidden md:flex h-screen w-64 flex-col border-r border-white/5 bg-zinc-950/50 backdrop-blur-xl">
-      <div className="flex h-20 shrink-0 items-center justify-center border-b border-white/5 px-6">
+    <div className="hidden md:flex h-screen w-64 flex-col border-r border-sys-border bg-sys-bg/50 backdrop-blur-xl">
+      <div className="flex h-20 shrink-0 items-center justify-center border-b border-sys-border px-6">
         <Image 
           src="/logo.png" 
           alt="Nuestra Señora del Carmen" 
@@ -43,7 +43,7 @@ export async function Sidebar() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-sys-text-muted transition-colors hover:bg-white/5 hover:text-sys-text"
               >
                 <item.icon size={18} />
                 {item.name}
@@ -53,7 +53,7 @@ export async function Sidebar() {
         </ul>
         
         <form action="/auth/signout" method="post">
-          <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-zinc-400 transition-colors hover:bg-red-500/10 hover:text-red-500">
+          <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-sys-text-muted transition-colors hover:bg-sys-danger/10 hover:text-sys-danger">
             <LogOut size={18} />
             Cerrar Sesión
           </button>

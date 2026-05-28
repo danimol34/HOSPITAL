@@ -6,8 +6,8 @@ export default async function LoginPage(props: { searchParams: Promise<{ message
   const { message } = searchParams
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-zinc-950 p-4">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl ring-1 ring-white/10">
+    <div className="flex h-screen w-full items-center justify-center bg-sys-bg p-4">
+      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-sys-panel shadow-2xl ring-1 ring-white/10">
         <div className="p-8">
           <div className="mb-8 flex flex-col items-center justify-center text-center">
             <div className="mb-6 mt-10 flex justify-center">
@@ -20,7 +20,7 @@ export default async function LoginPage(props: { searchParams: Promise<{ message
                 priority
               />
             </div>
-            <p className="mt-2 text-sm text-zinc-400">
+            <p className="mt-2 text-sm text-sys-text-muted">
               Sistema Administrativo Interno
             </p>
           </div>

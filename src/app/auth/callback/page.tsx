@@ -91,11 +91,11 @@ function AuthCallback() {
   }
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center bg-zinc-950 text-white">
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-sys-bg text-sys-text">
       <div className="flex flex-col items-center gap-4">
-        <Activity className="h-12 w-12 animate-pulse text-emerald-500" />
+        <Activity className="h-12 w-12 animate-pulse text-sys-primary" />
         <h1 className="text-xl font-bold">Validando credenciales...</h1>
-        <p className="text-sm text-zinc-500 text-center px-4">
+        <p className="text-sm text-sys-text-dark text-center px-4">
           Por favor espera un momento mientras procesamos tu acceso seguro.
         </p>
       </div>
@@ -106,9 +106,9 @@ function AuthCallback() {
 export default function AuthCallbackPage() {
   return (
     <Suspense fallback={
-      <div className="flex h-screen w-full flex-col items-center justify-center bg-zinc-950 text-white">
+      <div className="flex h-screen w-full flex-col items-center justify-center bg-sys-bg text-sys-text">
         <div className="flex flex-col items-center gap-4">
-          <Activity className="h-12 w-12 animate-pulse text-emerald-500" />
+          <Activity className="h-12 w-12 animate-pulse text-sys-primary" />
           <h1 className="text-xl font-bold">Cargando...</h1>
         </div>
       </div>

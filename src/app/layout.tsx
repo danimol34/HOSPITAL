@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark" suppressHydrationWarning>
       <body 
-        className={`${inter.className} bg-zinc-950 text-white antialiased`}
+        className={`${inter.className} bg-sys-bg text-sys-text antialiased`}
         suppressHydrationWarning
       >
         <HashErrorListener />

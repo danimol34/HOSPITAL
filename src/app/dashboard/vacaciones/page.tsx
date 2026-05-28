@@ -45,8 +45,8 @@ export default async function VacacionesPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Listado Global de Vacaciones</h1>
-        <p className="text-sm text-zinc-400">Consulta el estado de vacaciones de todos los empleados.</p>
+        <h1 className="text-2xl font-bold text-sys-text">Listado Global de Vacaciones</h1>
+        <p className="text-sm text-sys-text-muted">Consulta el estado de vacaciones de todos los empleados.</p>
       </div>
 
       <VacacionesClient 

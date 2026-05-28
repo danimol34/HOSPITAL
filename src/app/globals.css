@@ -1,28 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ========================================================
+     1. TIPOGRAFÍA Y TEXTOS
+     ======================================================== 
+     Aquí controlas el color y la fuente de las letras en el sistema.
+  */
+  --font-family-base: Arial, Helvetica, sans-serif;
+  
+  /* Textos generales */
+  --text-main: #ffffff; /* Texto principal brillante (títulos, nombres) */
+  --text-muted: #a1a1aa; /* Texto secundario gris claro (correos, descripciones) */
+  --text-muted-dark: #71717a; /* Texto terciario gris oscuro (fechas, placeholders) */
+
+  /* ========================================================
+     2. FONDOS GENERALES DEL SISTEMA
+     ======================================================== 
+     Controla el color del fondo de la página, los paneles, las tablas,
+     las listas de empleados y usuarios, y los calendarios.
+  */
+  --bg-app: #09090b; /* Fondo general de toda la aplicación (muy oscuro) */
+  --bg-panel: #18181b; /* Fondo de los cuadros, tablas, formulario modal y calendario */
+  --bg-panel-hover: #27272a; /* Fondo de una fila (ej. lista de empleados) al pasar el mouse */
+  --border-panel: rgba(255, 255, 255, 0.1); /* Color de las líneas, bordes y separadores */
+
+  /* ========================================================
+     3. COLOR PRIMARIO (BOTONES, ÍCONOS Y DETALLES)
+     ======================================================== 
+     Este es el color "Tema" del sistema. Se usa en botones de "Guardar",
+     los íconos de la sección "Estructura" (servicios médicos, etc.),
+     bordes de cuadros de texto seleccionados, y botones del calendario.
+  */
+  --color-primary: #10b981; /* Verde esmeralda base */
+  --color-primary-hover: #34d399; /* Verde más claro para cuando pasas el mouse por botones */
+  --color-primary-dark: #059669; /* Verde oscuro para el fondo de botones principales */
+  --color-primary-transparent: rgba(16, 185, 129, 0.2); /* Verde transparente para etiquetas/badges */
+
+  /* ========================================================
+     4. COLORES DE ESTADO Y ROLES
+     ======================================================== 
+     Colores para el rol de Administrador, alertas o botones de eliminar.
+  */
+  --color-admin: #f97316; /* Naranja para el rol de administrador */
+  --color-visor: #3b82f6; /* Azul para el rol de visor */
+  --color-danger: #ef4444; /* Rojo para botones de "Eliminar" (basurita) */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* 
+     Aquí conectamos las variables de arriba con Tailwind.
+     Para usar el color primario en un botón, escribiremos: bg-sys-primary
+  */
+  --color-sys-bg: var(--bg-app);
+  --color-sys-panel: var(--bg-panel);
+  --color-sys-panel-hover: var(--bg-panel-hover);
+  --color-sys-border: var(--border-panel);
+  
+  --color-sys-primary: var(--color-primary);
+  --color-sys-primary-hover: var(--color-primary-hover);
+  --color-sys-primary-dark: var(--color-primary-dark);
+  --color-sys-primary-trans: var(--color-primary-transparent);
+  
+  --color-sys-text: var(--text-main);
+  --color-sys-text-muted: var(--text-muted);
+  --color-sys-text-dark: var(--text-muted-dark);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-sys-admin: var(--color-admin);
+  --color-sys-visor: var(--color-visor);
+  --color-sys-danger: var(--color-danger);
+
+  --font-sans: var(--font-family-base);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans);
 }
 
 /* Custom Horizontal Scrollbar */

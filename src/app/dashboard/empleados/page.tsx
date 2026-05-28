@@ -36,8 +36,8 @@ export default async function EmpleadosPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Directorio de Empleados</h1>
-        <p className="text-sm text-zinc-400">Gestiona la información del personal del hospital.</p>
+        <h1 className="text-2xl font-bold text-sys-text">Directorio de Empleados</h1>
+        <p className="text-sm text-sys-text-muted">Gestiona la información del personal del hospital.</p>
       </div>
       
       <EmpleadosClient 

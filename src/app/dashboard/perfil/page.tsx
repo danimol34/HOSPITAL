@@ -17,8 +17,8 @@ export default async function PerfilPage() {
   return (
     <div className="flex flex-col gap-8 max-w-4xl mx-auto w-full">
       <div>
-        <h1 className="text-2xl font-bold text-white">Mi Perfil</h1>
-        <p className="text-sm text-zinc-400">Información personal y configuración de cuenta.</p>
+        <h1 className="text-2xl font-bold text-sys-text">Mi Perfil</h1>
+        <p className="text-sm text-sys-text-muted">Información personal y configuración de cuenta.</p>
       </div>
       
       <PerfilClient initialPerfil={perfil || {}} userEmail={user.email || ''} />

@@ -25,7 +25,7 @@ export function MobileNav({ rol }: { rol: string }) {
       <button 
         type="button"
         onClick={() => setIsOpen(true)}
-        className="relative z-10 rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white transition-colors touch-manipulation"
+        className="relative z-10 rounded-lg p-2 text-sys-text-muted hover:bg-white/5 hover:text-sys-text transition-colors touch-manipulation"
       >
         <Menu size={24} className="pointer-events-none" />
       </button>
@@ -35,15 +35,15 @@ export function MobileNav({ rol }: { rol: string }) {
         <div className="fixed inset-0 z-50 flex">
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsOpen(false)}></div>
           
-          <div className="relative flex w-64 max-w-xs flex-col bg-zinc-950 p-6 shadow-2xl transition-transform">
+          <div className="relative flex w-64 max-w-xs flex-col bg-sys-bg p-6 shadow-2xl transition-transform">
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute right-4 top-4 rounded-lg p-2 text-zinc-400 hover:bg-white/5 hover:text-white"
+              className="absolute right-4 top-4 rounded-lg p-2 text-sys-text-muted hover:bg-white/5 hover:text-sys-text"
             >
               <X size={20} />
             </button>
 
-            <div className="flex items-center justify-center mb-8 border-b border-white/5 pb-6">
+            <div className="flex items-center justify-center mb-8 border-b border-sys-border pb-6">
               <Image 
                 src="/logo.png" 
                 alt="Nuestra Señora del Carmen" 
@@ -63,7 +63,7 @@ export function MobileNav({ rol }: { rol: string }) {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+                        className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-sys-text-muted transition-colors hover:bg-white/5 hover:text-sys-text"
                       >
                         <Icon size={20} />
                         {item.name}
@@ -73,8 +73,8 @@ export function MobileNav({ rol }: { rol: string }) {
                 })}
               </ul>
               
-              <form action="/auth/signout" method="post" className="mt-8 border-t border-white/10 pt-4">
-                <button className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-red-500/10 hover:text-red-500">
+              <form action="/auth/signout" method="post" className="mt-8 border-t border-sys-border pt-4">
+                <button className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-sys-text-muted transition-colors hover:bg-sys-danger/10 hover:text-sys-danger">
                   <LogOut size={20} />
                   Cerrar Sesión
                 </button>

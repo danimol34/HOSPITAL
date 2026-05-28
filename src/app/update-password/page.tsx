@@ -43,17 +43,17 @@ export default function UpdatePasswordPage() {
   }
 
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-zinc-950 p-4">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl ring-1 ring-white/10">
+    <div className="flex h-screen w-full items-center justify-center bg-sys-bg p-4">
+      <div className="w-full max-w-md overflow-hidden rounded-2xl bg-sys-panel shadow-2xl ring-1 ring-white/10">
         <div className="p-8">
           <div className="mb-8 flex flex-col items-center justify-center text-center">
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sys-primary/10 text-sys-primary">
               <Activity size={32} />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-white">
+            <h1 className="text-2xl font-bold tracking-tight text-sys-text">
               Crea tu nueva contraseña
             </h1>
-            <p className="mt-2 text-sm text-zinc-400">
+            <p className="mt-2 text-sm text-sys-text-muted">
               Por favor ingresa una nueva contraseña para tu cuenta.
             </p>
           </div>
@@ -65,7 +65,7 @@ export default function UpdatePasswordPage() {
               </label>
               <div className="relative">
                 <input
-                  className="w-full rounded-xl border border-white/10 bg-zinc-800/50 px-4 py-3 pr-12 text-sm text-white placeholder-zinc-500 outline-none transition-all focus:border-emerald-500 focus:bg-zinc-800 focus:ring-1 focus:ring-emerald-500"
+                  className="w-full rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-3 pr-12 text-sm text-sys-text placeholder-zinc-500 outline-none transition-all focus:border-sys-primary focus:bg-sys-panel-hover focus:ring-1 focus:ring-emerald-500"
                   id="password"
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -76,7 +76,7 @@ export default function UpdatePasswordPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-zinc-500 hover:text-white transition-colors z-10 touch-manipulation"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-sys-text-dark hover:text-sys-text transition-colors z-10 touch-manipulation"
                 >
                   {showPassword ? <EyeOff size={18} className="pointer-events-none" /> : <Eye size={18} className="pointer-events-none" />}
                 </button>
@@ -89,7 +89,7 @@ export default function UpdatePasswordPage() {
               </label>
               <div className="relative">
                 <input
-                  className="w-full rounded-xl border border-white/10 bg-zinc-800/50 px-4 py-3 pr-12 text-sm text-white placeholder-zinc-500 outline-none transition-all focus:border-emerald-500 focus:bg-zinc-800 focus:ring-1 focus:ring-emerald-500"
+                  className="w-full rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-3 pr-12 text-sm text-sys-text placeholder-zinc-500 outline-none transition-all focus:border-sys-primary focus:bg-sys-panel-hover focus:ring-1 focus:ring-emerald-500"
                   id="confirmPassword"
                   type={showPassword ? "text" : "password"}
                   value={confirmPassword}
@@ -101,20 +101,20 @@ export default function UpdatePasswordPage() {
             </div>
             
             {status === 'success' && (
-              <div className="rounded-lg bg-emerald-500/10 p-3 text-center text-sm text-emerald-500">
+              <div className="rounded-lg bg-sys-primary/10 p-3 text-center text-sm text-sys-primary">
                 {message}
               </div>
             )}
 
             {status === 'error' && (
-              <div className="rounded-lg bg-red-500/10 p-3 text-center text-sm text-red-500">
+              <div className="rounded-lg bg-sys-danger/10 p-3 text-center text-sm text-sys-danger">
                 {message}
               </div>
             )}
 
             <button
               disabled={status === 'loading'}
-              className="mt-2 flex w-full items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-medium text-white transition-all hover:bg-emerald-500 active:scale-[0.98] disabled:opacity-50"
+              className="mt-2 flex w-full items-center justify-center rounded-xl bg-sys-primary-dark px-4 py-3 text-sm font-medium text-sys-text transition-all hover:bg-sys-primary active:scale-[0.98] disabled:opacity-50"
               type="submit"
             >
               {status === 'loading' ? 'Guardando...' : 'Actualizar Contraseña'}

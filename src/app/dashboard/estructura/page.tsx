@@ -18,8 +18,8 @@ export default async function EstructuraPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Estructura del Hospital</h1>
-        <p className="text-sm text-zinc-400">Gestiona las divisiones y departamentos.</p>
+        <h1 className="text-2xl font-bold text-sys-text">Estructura del Hospital</h1>
+        <p className="text-sm text-sys-text-muted">Gestiona las divisiones y departamentos.</p>
       </div>
       
       <EstructuraClient 
