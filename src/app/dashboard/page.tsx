@@ -68,7 +68,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-sys-text">Finalización de vacaciones</h2>
-              <p className="text-xs text-sys-text-dark">Próximos {daysRange} días</p>
+              <p className="text-xs text-sys-text-muted font-semibold">Próximos {daysRange} días</p>
             </div>
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-primary-transparent text-sys-primary">
               <CalendarDays size={20} />
@@ -91,7 +91,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-dark text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay finalizaciones en los próximos {daysRange} días.</p>
+              <p className="text-sm text-sys-text-muted font-semibold text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay finalizaciones en los próximos {daysRange} días.</p>
             )}
           </div>
         </div>
@@ -101,7 +101,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-sys-text">Inicio de vacaciones</h2>
-              <p className="text-xs text-sys-text-dark">Próximos {daysRange} días</p>
+              <p className="text-xs text-sys-text-muted font-semibold">Próximos {daysRange} días</p>
             </div>
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-visor/10 text-sys-visor">
               <ArrowRight size={20} />
@@ -124,7 +124,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-dark text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay inicios programados en los próximos {daysRange} días.</p>
+              <p className="text-sm text-sys-text-muted font-semibold text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay inicios programados en los próximos {daysRange} días.</p>
             )}
           </div>
         </div>
@@ -132,3 +132,6 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
     </div>
   )
 }
+
+
+

@@ -182,14 +182,14 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
               {perfil.avatar_url ? (
                 <img src={perfil.avatar_url} alt="Avatar" className="h-full w-full object-cover" />
               ) : (
-                <UserCircle2 size={64} className="text-sys-text-dark" />
+                <UserCircle2 size={64} className="text-sys-text-muted font-semibold" />
               )}
             </div>
             
             <button 
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading}
-              className="absolute bottom-0 right-0 rounded-full bg-sys-primary-dark p-2.5 text-sys-text shadow-lg transition-transform hover:scale-110 active:scale-95 disabled:opacity-50"
+              className="absolute bottom-0 right-0 rounded-full bg-sys-primary p-2.5 text-white shadow-lg transition-transform hover:scale-110 active:scale-95 disabled:opacity-50"
               title="Cambiar foto de perfil"
             >
               <Camera size={18} />
@@ -230,7 +230,7 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
 
       {/* Columna Derecha: Datos Personales */}
       <div className="flex flex-1 flex-col rounded-2xl border border-sys-border bg-sys-panel/50 shadow-xl overflow-hidden">
-        <div className="flex justify-between items-center border-b border-sys-border px-6 py-5 bg-black/20">
+        <div className="flex justify-between items-center border-b border-sys-border px-6 py-5 bg-sys-panel-hover shadow-sm">
           <div>
             <h3 className="font-semibold text-sys-text">Información del Perfil</h3>
             <p className="text-xs text-sys-text-muted mt-1">Tus datos registrados en el sistema administrativo.</p>
@@ -286,8 +286,8 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
               </div>
 
               <div className="mt-4 flex justify-end gap-3 border-t border-sys-border pt-4">
-                <button type="button" onClick={() => { setIsEditing(false); setForm({...perfil}); }} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-white/5 hover:text-sys-text">Cancelar</button>
-                <button type="submit" disabled={isSaving} className="rounded-xl bg-sys-primary-dark px-4 py-2 text-sm font-medium text-sys-text hover:bg-sys-primary disabled:opacity-50">
+                <button type="button" onClick={() => { setIsEditing(false); setForm({...perfil}); }} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-sys-panel-hover hover:text-sys-text">Cancelar</button>
+                <button type="submit" disabled={isSaving} className="rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white hover:bg-sys-primary disabled:opacity-50">
                   {isSaving ? 'Guardando...' : 'Guardar Cambios'}
                 </button>
               </div>
@@ -297,50 +297,50 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
               <div className="sm:col-span-2"><h4 className="border-b border-sys-border pb-2 text-sm font-bold text-sys-primary-hover uppercase tracking-wider">Datos Personales</h4></div>
               
               <div className="sm:col-span-1">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Cédula de Identidad</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Cédula de Identidad</dt>
                 <dd className="mt-1 text-sm text-sys-text font-medium">{perfil.cedula ? `${perfil.nacionalidad}-${perfil.cedula}` : 'No registrada'}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Sexo</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Sexo</dt>
                 <dd className="mt-1 text-sm text-sys-text font-medium">{perfil.sexo === 'M' ? 'Masculino' : perfil.sexo === 'F' ? 'Femenino' : 'No registrado'}</dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Fecha de Nacimiento</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Fecha de Nacimiento</dt>
                 <dd className="mt-1 text-sm text-sys-text flex items-center gap-2 font-medium">
                   <Calendar size={16} className="text-sys-text-muted" />
                   {perfil.fecha_nacimiento ? formatDate(perfil.fecha_nacimiento) : 'No registrada'}
                 </dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Lugar de Nacimiento</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Lugar de Nacimiento</dt>
                 <dd className="mt-1 text-sm text-sys-text flex items-center gap-2 font-medium">
                   <MapPin size={16} className="text-sys-text-muted" />
                   {perfil.lugar_nacimiento || 'No registrado'}
                 </dd>
               </div>
               <div className="sm:col-span-1">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Teléfono</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Teléfono</dt>
                 <dd className="mt-1 text-sm text-sys-text font-medium">{perfil.telefono || '--'}</dd>
               </div>
               <div className="sm:col-span-2">
-                <dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Dirección de Habitación</dt>
+                <dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Dirección de Habitación</dt>
                 <dd className="mt-1 text-sm text-sys-text font-medium">{perfil.direccion_habitacion || '--'}</dd>
               </div>
 
               <div className="sm:col-span-2 mt-4"><h4 className="border-b border-sys-border pb-2 text-sm font-bold text-sys-primary-hover uppercase tracking-wider">Datos Laborales</h4></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Cargo Nominal</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.cargo_nominal || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Situación Laboral</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.situacion_laboral || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Tipo de Personal</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.tipo_personal || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Ubicación Administrativa</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.ubicacion_administrativa || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Código de Nómina</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.codigo_nomina || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Vacaciones Disfrutadas</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.vacaciones_disfrutadas || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Ingreso Ministerio</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.fecha_ingreso_ministerio ? formatDate(perfil.fecha_ingreso_ministerio) : '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Ingreso Admin. Pública</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.fecha_ingreso_admin_publica ? formatDate(perfil.fecha_ingreso_admin_publica) : '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Cargo Nominal</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.cargo_nominal || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Situación Laboral</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.situacion_laboral || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Tipo de Personal</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.tipo_personal || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Ubicación Administrativa</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.ubicacion_administrativa || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Código de Nómina</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.codigo_nomina || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Vacaciones Disfrutadas</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.vacaciones_disfrutadas || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Ingreso Ministerio</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.fecha_ingreso_ministerio ? formatDate(perfil.fecha_ingreso_ministerio) : '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Ingreso Admin. Pública</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.fecha_ingreso_admin_publica ? formatDate(perfil.fecha_ingreso_admin_publica) : '--'}</dd></div>
 
               <div className="sm:col-span-2 mt-4"><h4 className="border-b border-sys-border pb-2 text-sm font-bold text-sys-primary-hover uppercase tracking-wider">Información Académica</h4></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Nivel Académico</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.nivel_academico || '--'}</dd></div>
-              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Profesión</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.profesion || '--'}</dd></div>
-              <div className="sm:col-span-2"><dt className="text-xs font-medium text-sys-text-dark uppercase tracking-wider">Especialidad</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.especialidad || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Nivel Académico</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.nivel_academico || '--'}</dd></div>
+              <div className="sm:col-span-1"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Profesión</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.profesion || '--'}</dd></div>
+              <div className="sm:col-span-2"><dt className="text-xs font-medium text-sys-text-muted font-semibold uppercase tracking-wider">Especialidad</dt><dd className="mt-1 text-sm text-sys-text font-medium">{perfil.especialidad || '--'}</dd></div>
             </dl>
           )}
         </div>
@@ -349,3 +349,6 @@ export default function PerfilClient({ initialPerfil, userEmail }: { initialPerf
     </div>
   )
 }
+
+
+

@@ -263,7 +263,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
       <div className="flex flex-col gap-4 rounded-2xl border border-sys-border bg-sys-panel/50 p-5 shadow-xl md:flex-row md:items-center md:justify-between">
         <div className="flex flex-1 flex-col gap-3 md:flex-row md:items-center">
           <div className="relative w-full max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-sys-text-dark" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-sys-text-muted font-semibold" size={18} />
             <input type="text" placeholder="Buscar por cédula o nombre..." className="w-full rounded-xl border border-sys-border bg-sys-panel-hover/50 py-2 pl-10 pr-4 text-sm text-sys-text focus:border-sys-primary focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
           </div>
           <select className="w-full max-w-xs rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none" value={filterServicioId} onChange={(e) => { setFilterServicioId(e.target.value); setFilterDeptoId(''); }}>
@@ -284,7 +284,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                   setFormServicioId('')
                   setIsModalOpen(true)
                 }} 
-                className="flex items-center gap-2 rounded-xl bg-sys-primary-dark px-4 py-2 text-sm font-medium text-sys-text transition-colors hover:bg-sys-primary"
+                className="flex items-center gap-2 rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sys-primary-hover shadow-md"
               >
                 <Plus size={18} /> Registrar Empleado
               </button>
@@ -293,16 +293,16 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
       </div>
 
       {/* Table */}
-      <div className="w-full overflow-x-auto rounded-2xl border border-sys-border bg-sys-panel/50 shadow-xl">
+      <div className="w-full overflow-x-auto rounded-2xl border border-sys-border bg-sys-panel shadow-md">
         <table className="min-w-[1000px] w-full text-left text-sm text-sys-text-muted whitespace-nowrap">
-            <thead className="border-b border-sys-border bg-black/20 text-xs uppercase text-zinc-300">
+            <thead className="border-b border-sys-border bg-sys-panel-hover text-xs uppercase text-sys-text-muted font-bold">
               <tr>
-                <th className="px-6 py-4 font-medium">Empleado</th>
-                <th className="px-6 py-4 font-medium">Cédula</th>
-                <th className="px-6 py-4 font-medium">Edad</th>
-                <th className="px-6 py-4 font-medium">Departamento</th>
-                <th className="px-6 py-4 font-medium">Vacaciones</th>
-                <th className="px-6 py-4 font-medium text-right">Acciones</th>
+                <th className="px-6 py-4">Empleado</th>
+                <th className="px-6 py-4">Cédula</th>
+                <th className="px-6 py-4">Edad</th>
+                <th className="px-6 py-4">Departamento</th>
+                <th className="px-6 py-4">Vacaciones</th>
+                <th className="px-6 py-4 text-right">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -322,7 +322,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                 <tr 
                   key={emp.id} 
                   onClick={() => { setSelectedEmployee(emp); setIsDetailsOpen(true); }}
-                  className="border-b border-sys-border transition-colors hover:bg-white/10 cursor-pointer"
+                  className="border-b border-sys-border transition-colors hover:bg-sys-panel-hover cursor-pointer"
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
@@ -331,7 +331,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                       </div>
                       <div>
                         <div className="font-semibold text-sys-text">{emp.nombres} {emp.apellidos}</div>
-                        <div className="text-xs text-sys-text-dark">{emp.sexo === 'M' ? 'Masculino' : 'Femenino'}</div>
+                        <div className="text-xs text-sys-text-muted font-semibold">{emp.sexo === 'M' ? 'Masculino' : 'Femenino'}</div>
                       </div>
                     </div>
                   </td>
@@ -342,7 +342,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                     {vacStatus ? (
                       <div className="flex flex-col">
                         <span className={`text-xs font-medium ${vacStatus.type === 'En Curso' ? 'text-sys-admin' : 'text-sys-visor'}`}>{vacStatus.type}</span>
-                        <span className="text-xs text-sys-text-dark">{vacStatus.type === 'En Curso' ? `Quedan ${vacStatus.days} días` : `Faltan ${vacStatus.days} días`}</span>
+                        <span className="text-xs text-sys-text-muted font-semibold">{vacStatus.type === 'En Curso' ? `Quedan ${vacStatus.days} días` : `Faltan ${vacStatus.days} días`}</span>
                       </div>
                     ) : <span className="text-xs text-zinc-600">Ninguna</span>}
                   </td>
@@ -351,7 +351,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                       {!isVisor && (
                         <button 
                           onClick={(e) => { e.stopPropagation(); handleDelete(emp.id); }} 
-                          className="text-sys-text-dark hover:text-sys-danger transition-colors" 
+                          className="text-sys-text-muted font-semibold hover:text-sys-danger transition-colors" 
                           title="Eliminar"
                         >
                           <Trash2 size={18} />
@@ -361,7 +361,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                   </td>
                 </tr>
               )})}
-              {filteredEmpleados.length === 0 && <tr><td colSpan={6} className="py-8 text-center text-sys-text-dark">No se encontraron empleados.</td></tr>}
+              {filteredEmpleados.length === 0 && <tr><td colSpan={6} className="py-8 text-center text-sys-text-muted font-semibold">No se encontraron empleados.</td></tr>}
             </tbody>
           </table>
       </div>
@@ -410,7 +410,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                     Editar
                   </button>
                 )}
-                <button onClick={() => { setIsDetailsOpen(false); setSelectedEmployee(null); }} className="text-sys-text-dark hover:text-sys-text">✕</button>
+                <button onClick={() => { setIsDetailsOpen(false); setSelectedEmployee(null); }} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
               </div>
             </div>
             
@@ -419,7 +419,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
               <div className="flex flex-col gap-6 md:w-1/3 shrink-0">
                 <div className="flex items-center gap-4">
                   <div className="relative group">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sys-panel-hover text-sys-text-muted overflow-hidden ring-2 ring-white/10">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sys-panel-hover text-sys-text-muted overflow-hidden ring-2 ring-sys-border">
                       {selectedEmployee.avatar_url ? <img src={selectedEmployee.avatar_url} alt="Avatar" className="h-full w-full object-cover" /> : <UserCircle2 size={32} />}
                     </div>
                     {!isVisor && (
@@ -452,21 +452,21 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                 <div className="flex gap-4 border-b border-sys-border mb-6">
                   <button 
                     onClick={() => setActiveTab('perfil')}
-                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'perfil' ? 'text-sys-primary-hover' : 'text-sys-text-dark hover:text-sys-text'}`}
+                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'perfil' ? 'text-sys-primary-hover' : 'text-sys-text-muted font-semibold hover:text-sys-text'}`}
                   >
                     <div className="flex items-center gap-2"><UserCircle2 size={16}/> Perfil</div>
                     {activeTab === 'perfil' && <div className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-emerald-400 rounded-t-full"></div>}
                   </button>
                   <button 
                     onClick={() => setActiveTab('asistencias')}
-                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'asistencias' ? 'text-sys-primary-hover' : 'text-sys-text-dark hover:text-sys-text'}`}
+                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'asistencias' ? 'text-sys-primary-hover' : 'text-sys-text-muted font-semibold hover:text-sys-text'}`}
                   >
                     <div className="flex items-center gap-2"><Clock size={16}/> Asistencias</div>
                     {activeTab === 'asistencias' && <div className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-emerald-400 rounded-t-full"></div>}
                   </button>
                   <button 
                     onClick={() => setActiveTab('vacaciones')}
-                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'vacaciones' ? 'text-sys-primary-hover' : 'text-sys-text-dark hover:text-sys-text'}`}
+                    className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === 'vacaciones' ? 'text-sys-primary-hover' : 'text-sys-text-muted font-semibold hover:text-sys-text'}`}
                   >
                     <div className="flex items-center gap-2"><CalendarDays size={16}/> Vacaciones</div>
                     {activeTab === 'vacaciones' && <div className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-emerald-400 rounded-t-full"></div>}
@@ -476,39 +476,39 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                 {/* PERFIL TAB */}
                 {activeTab === 'perfil' && (
                   <div className="flex flex-col gap-6">
-                    <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Datos Personales</h3>
+                    <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Datos Personales</h3>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Cédula</span><span className="font-medium text-sys-text">{selectedEmployee.nacionalidad}-{selectedEmployee.cedula}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Sexo</span><span className="font-medium text-sys-text">{selectedEmployee.sexo === 'M' ? 'Masculino' : 'Femenino'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Fecha de Nacimiento</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_nacimiento)} ({differenceInYears(new Date(), parseISO(selectedEmployee.fecha_nacimiento))} años)</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Teléfono</span><span className="font-medium text-sys-text">{selectedEmployee.telefono || '--'}</span></div>
-                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Correo Electrónico</span><span className="font-medium text-sys-text">{selectedEmployee.correo_electronico || '--'}</span></div>
-                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Dirección</span><span className="font-medium text-sys-text leading-relaxed">{selectedEmployee.direccion_habitacion || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Cédula</span><span className="font-medium text-sys-text">{selectedEmployee.nacionalidad}-{selectedEmployee.cedula}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Sexo</span><span className="font-medium text-sys-text">{selectedEmployee.sexo === 'M' ? 'Masculino' : 'Femenino'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Fecha de Nacimiento</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_nacimiento)} ({differenceInYears(new Date(), parseISO(selectedEmployee.fecha_nacimiento))} años)</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Teléfono</span><span className="font-medium text-sys-text">{selectedEmployee.telefono || '--'}</span></div>
+                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Correo Electrónico</span><span className="font-medium text-sys-text">{selectedEmployee.correo_electronico || '--'}</span></div>
+                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Dirección</span><span className="font-medium text-sys-text leading-relaxed">{selectedEmployee.direccion_habitacion || '--'}</span></div>
                       </div>
                     </div>
 
-                    <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Datos Laborales</h3>
+                    <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Datos Laborales</h3>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Cargo Nominal</span><span className="font-medium text-sys-text">{selectedEmployee.cargo_nominal || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Situación Laboral</span><span className="font-medium text-sys-text">{selectedEmployee.situacion_laboral || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Tipo de Personal</span><span className="font-medium text-sys-text">{selectedEmployee.tipo_personal || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ubicación Administrativa</span><span className="font-medium text-sys-text">{selectedEmployee.ubicacion_administrativa || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Código de Nómina</span><span className="font-medium text-sys-text">{selectedEmployee.codigo_nomina || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Vacaciones Disfrutadas</span><span className="font-medium text-sys-text">{selectedEmployee.vacaciones_disfrutadas || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ingreso Ministerio</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_ingreso_ministerio)}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ingreso Admin. Pública</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_ingreso_admin_publica)}</span></div>
-                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Años de Servicio</span><span className="font-medium text-sys-primary-hover">{selectedEmployee.fecha_ingreso_admin_publica ? differenceInYears(new Date(), parseISO(selectedEmployee.fecha_ingreso_admin_publica)) : '--'} años</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Cargo Nominal</span><span className="font-medium text-sys-text">{selectedEmployee.cargo_nominal || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Situación Laboral</span><span className="font-medium text-sys-text">{selectedEmployee.situacion_laboral || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Tipo de Personal</span><span className="font-medium text-sys-text">{selectedEmployee.tipo_personal || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ubicación Administrativa</span><span className="font-medium text-sys-text">{selectedEmployee.ubicacion_administrativa || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Código de Nómina</span><span className="font-medium text-sys-text">{selectedEmployee.codigo_nomina || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Vacaciones Disfrutadas</span><span className="font-medium text-sys-text">{selectedEmployee.vacaciones_disfrutadas || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ingreso Ministerio</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_ingreso_ministerio)}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ingreso Admin. Pública</span><span className="font-medium text-sys-text">{formatDate(selectedEmployee.fecha_ingreso_admin_publica)}</span></div>
+                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Años de Servicio</span><span className="font-medium text-sys-primary-hover">{selectedEmployee.fecha_ingreso_admin_publica ? differenceInYears(new Date(), parseISO(selectedEmployee.fecha_ingreso_admin_publica)) : '--'} años</span></div>
                       </div>
                     </div>
 
-                    <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Información Académica</h3>
+                    <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                      <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Información Académica</h3>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Nivel Académico</span><span className="font-medium text-sys-text">{selectedEmployee.nivel_academico || '--'}</span></div>
-                        <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Profesión</span><span className="font-medium text-sys-text">{selectedEmployee.profesion || '--'}</span></div>
-                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Especialidad</span><span className="font-medium text-sys-text">{selectedEmployee.especialidad || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Nivel Académico</span><span className="font-medium text-sys-text">{selectedEmployee.nivel_academico || '--'}</span></div>
+                        <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Profesión</span><span className="font-medium text-sys-text">{selectedEmployee.profesion || '--'}</span></div>
+                        <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Especialidad</span><span className="font-medium text-sys-text">{selectedEmployee.especialidad || '--'}</span></div>
                       </div>
                     </div>
                   </div>
@@ -527,7 +527,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                     {/* Grid del Calendario */}
                     <div className="flex flex-col md:flex-row gap-6">
                       <div className="flex-1">
-                        <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-sys-text-dark mb-2">
+                        <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-sys-text-muted font-semibold mb-2">
                           <div>Do</div><div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vi</div><div>Sa</div>
                         </div>
                         <div className="grid grid-cols-7 gap-1">
@@ -550,7 +550,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                             const isAfterCreation = dateStr >= empCreatedStr
                             const isFalta = !isVacacion && ((asis && asis.falta) || (isPastOrToday && isAfterCreation && !isAsistencia))
                             
-                            let style = 'text-sys-text-muted hover:bg-white/5'
+                            let style = 'text-sys-text-muted hover:bg-sys-panel-hover'
                             if (isVacacion) style = 'bg-sys-admin/20 text-sys-admin border border-sys-admin/50 font-bold'
                             else if (isAsistencia) style = 'bg-sys-primary/20 text-sys-primary-hover border border-sys-primary/50 font-bold shadow-[0_0_10px_rgba(16,185,129,0.2)]'
                             else if (isFalta) style = 'bg-sys-danger/10 text-red-400 border border-red-500/30'
@@ -565,7 +565,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                                     hora_salida: asis?.hora_salida?.slice(0,5) || '15:00' 
                                   });
                                 }}
-                                className={`h-10 w-full rounded-lg text-sm transition-all flex items-center justify-center ${style} ${selectedAsistencia?.fecha === dateStr ? 'ring-2 ring-white' : ''}`}
+                                className={`h-10 w-full rounded-lg text-sm transition-all flex items-center justify-center ${style} ${selectedAsistencia?.fecha === dateStr ? 'ring-2 ring-sys-primary ring-offset-2' : ''}`}
                               >
                                 {format(date, 'd')}
                               </button>
@@ -575,12 +575,12 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                       </div>
 
                       {/* Detalles del día seleccionado */}
-                      <div className="md:w-64 shrink-0 rounded-xl border border-sys-border bg-black/20 p-4">
-                        <h4 className="text-sm font-medium text-zinc-300 mb-4 pb-2 border-b border-sys-border">Detalle del Día</h4>
+                      <div className="md:w-64 shrink-0 rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-4">
+                        <h4 className="text-sm font-medium text-sys-text-muted font-semibold mb-4 pb-2 border-b border-sys-border">Detalle del Día</h4>
                         {selectedAsistencia ? (
                           <div className="flex flex-col gap-4">
                             <div className="flex flex-col">
-                              <span className="text-[10px] uppercase text-sys-text-dark">Fecha</span>
+                              <span className="text-[10px] uppercase text-sys-text-muted font-semibold">Fecha</span>
                               <span className="text-sm text-sys-text">{formatDate(selectedAsistencia.fecha)}</span>
                             </div>
                             
@@ -632,7 +632,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                                     !isVisor && (
                                       <div className="flex flex-col gap-4 mt-2">
                                         <div className="flex flex-col gap-2">
-                                          <label className="text-[10px] uppercase text-sys-text-dark">Marcar Hora Entrada</label>
+                                          <label className="text-[10px] uppercase text-sys-text-muted font-semibold">Marcar Hora Entrada</label>
                                           <input 
                                             type="time" 
                                             className="rounded border border-sys-border bg-sys-panel-hover px-3 py-1.5 text-sm text-sys-text focus:border-sys-primary focus:outline-none"
@@ -641,7 +641,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                                           />
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                          <label className="text-[10px] uppercase text-sys-text-dark">Marcar Hora Salida</label>
+                                          <label className="text-[10px] uppercase text-sys-text-muted font-semibold">Marcar Hora Salida</label>
                                           <input 
                                             type="time" 
                                             className="rounded border border-sys-border bg-sys-panel-hover px-3 py-1.5 text-sm text-sys-text focus:border-sys-primary focus:outline-none"
@@ -652,7 +652,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                                         <button 
                                           onClick={handleManualSaveAttendance}
                                           disabled={isSavingAsis}
-                                          className="w-full rounded-lg bg-sys-primary-dark py-2 text-xs font-bold text-sys-text hover:bg-sys-primary transition-all active:scale-95 disabled:opacity-50"
+                                          className="w-full rounded-lg bg-sys-primary py-2 text-xs font-bold text-white hover:bg-sys-primary transition-all active:scale-95 disabled:opacity-50"
                                         >
                                           {isSavingAsis ? 'Guardando...' : 'Asignar Horario Manualmente'}
                                         </button>
@@ -664,7 +664,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                             })()}
                           </div>
                         ) : (
-                          <p className="text-xs text-sys-text-dark text-center py-4">Haz clic en un día del calendario para ver o registrar la asistencia.</p>
+                          <p className="text-xs text-sys-text-muted font-semibold text-center py-4">Haz clic en un día del calendario para ver o registrar la asistencia.</p>
                         )}
                       </div>
                     </div>
@@ -684,7 +684,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                           <label className="text-xs font-medium text-sys-text-muted">Fin</label>
                           <input required type="date" className="rounded-lg border border-sys-border bg-sys-panel-hover px-3 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none" value={vacForm.fecha_fin} onChange={(e) => setVacForm({...vacForm, fecha_fin: e.target.value})} />
                         </div>
-                        <button type="submit" className="mt-2 flex h-[38px] items-center justify-center rounded-lg bg-sys-primary-dark px-4 text-sm font-medium text-sys-text hover:bg-sys-primary xl:mt-0">Añadir</button>
+                        <button type="submit" className="mt-2 flex h-[38px] items-center justify-center rounded-lg bg-sys-primary px-4 text-sm font-medium text-white hover:bg-sys-primary xl:mt-0">Añadir</button>
                       </form>
                     )}
                     <div className="flex flex-col gap-2">
@@ -692,26 +692,26 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                         const isActiva = new Date().toISOString().split('T')[0] >= v.fecha_inicio && new Date().toISOString().split('T')[0] <= v.fecha_fin
                         const isFutura = new Date().toISOString().split('T')[0] < v.fecha_inicio
                         return (
-                          <div key={v.id} className="flex items-center justify-between rounded-xl bg-black/20 p-4">
+                          <div key={v.id} className="flex items-center justify-between rounded-xl bg-sys-panel-hover shadow-sm p-4">
                             <div>
                               <div className="flex gap-4 text-sm font-medium text-zinc-200">
                                 <span>Desde: <span className="text-sys-text">{formatDate(v.fecha_inicio)}</span></span>
                                 <span>Hasta: <span className="text-sys-text">{formatDate(v.fecha_fin)}</span></span>
                               </div>
-                              <div className="mt-1 text-xs text-sys-text-dark">Duración: {differenceInDays(parseISO(v.fecha_fin), parseISO(v.fecha_inicio))} días</div>
+                              <div className="mt-1 text-xs text-sys-text-muted font-semibold">Duración: {differenceInDays(parseISO(v.fecha_fin), parseISO(v.fecha_inicio))} días</div>
                             </div>
                             <div className="flex items-center gap-3">
                               {isActiva && <span className="rounded bg-sys-admin/10 px-2 py-1 text-xs font-medium text-sys-admin">En Curso</span>}
                               {isFutura && <span className="rounded bg-sys-visor/10 px-2 py-1 text-xs font-medium text-sys-visor">Programada</span>}
                               {!isActiva && !isFutura && <span className="rounded bg-zinc-500/10 px-2 py-1 text-xs font-medium text-sys-text-muted">Finalizada</span>}
                               {!isVisor && (
-                                <button onClick={() => handleDeleteVacation(v.id)} className="text-sys-text-dark hover:text-sys-danger"><Trash2 size={16} /></button>
+                                <button onClick={() => handleDeleteVacation(v.id)} className="text-sys-text-muted font-semibold hover:text-sys-danger"><Trash2 size={16} /></button>
                               )}
                             </div>
                           </div>
                         )
                       })}
-                      {employeeVacations.length === 0 && <p className="text-sm text-sys-text-dark text-center py-4">Este empleado no tiene vacaciones registradas.</p>}
+                      {employeeVacations.length === 0 && <p className="text-sm text-sys-text-muted font-semibold text-center py-4">Este empleado no tiene vacaciones registradas.</p>}
                     </div>
                   </div>
                 )}
@@ -727,7 +727,7 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
           <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-sys-border bg-sys-bg p-6 shadow-2xl">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-sys-text">{isEditing ? 'Editar Empleado' : 'Registrar Nuevo Empleado'}</h2>
-              <button onClick={() => { setIsModalOpen(false); setIsEditing(false); setForm(initialFormState); }} className="text-sys-text-dark hover:text-sys-text">✕</button>
+              <button onClick={() => { setIsModalOpen(false); setIsEditing(false); setForm(initialFormState); }} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
             </div>
             
             <form onSubmit={handleSave} className="flex flex-col gap-6">
@@ -788,8 +788,8 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
                 </div>
               </div>
               <div className="mt-4 flex justify-end gap-3 border-t border-sys-border pt-4">
-                <button type="button" onClick={() => { setIsModalOpen(false); setIsEditing(false); setForm(initialFormState); }} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-white/5 hover:text-sys-text">Cancelar</button>
-                <button type="submit" disabled={isUploading} className="rounded-xl bg-sys-primary-dark px-4 py-2 text-sm font-medium text-sys-text hover:bg-sys-primary disabled:opacity-50">
+                <button type="button" onClick={() => { setIsModalOpen(false); setIsEditing(false); setForm(initialFormState); }} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-sys-panel-hover hover:text-sys-text">Cancelar</button>
+                <button type="submit" disabled={isUploading} className="rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white hover:bg-sys-primary disabled:opacity-50">
                   {isUploading ? 'Guardando...' : (isEditing ? 'Guardar Cambios' : 'Registrar Empleado')}
                 </button>
               </div>
@@ -800,3 +800,6 @@ export default function EmpleadosClient({ initialEmpleados, departamentos, servi
     </div>
   )
 }
+
+
+

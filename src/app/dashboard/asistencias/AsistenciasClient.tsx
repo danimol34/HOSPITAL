@@ -208,10 +208,10 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
       {/* BARRA DE FILTROS Y SELECTOR DE FECHA */}
       <div className="flex flex-col md:flex-row gap-4 rounded-2xl border border-sys-border bg-sys-panel/50 p-5 shadow-xl md:items-center">
         <div className="flex flex-col gap-1 w-full md:max-w-[150px]">
-          <label className="text-[10px] uppercase tracking-wider text-sys-text-dark font-bold ml-1">Fecha</label>
+          <label className="text-[10px] uppercase tracking-wider text-sys-text-muted font-semibold font-bold ml-1">Fecha</label>
           <button 
             onClick={() => setShowCalendar(!showCalendar)}
-            className={`flex items-center justify-between gap-2 w-full rounded-xl border border-sys-border bg-sys-panel-hover px-4 py-2 text-sm font-bold transition-all ${showCalendar ? 'border-sys-primary text-sys-primary' : 'text-sys-text hover:bg-white/5'}`}
+            className={`flex items-center justify-between gap-2 w-full rounded-xl border border-sys-border bg-sys-panel-hover px-4 py-2 text-sm font-bold transition-all ${showCalendar ? 'border-sys-primary text-sys-primary' : 'text-sys-text hover:bg-sys-panel-hover'}`}
           >
             <CalendarDays size={18} />
             {formatDate(selectedDate)}
@@ -219,9 +219,9 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
         </div>
 
         <div className="flex flex-col gap-1 flex-1">
-          <label className="text-[10px] uppercase tracking-wider text-sys-text-dark font-bold ml-1">Búsqueda</label>
+          <label className="text-[10px] uppercase tracking-wider text-sys-text-muted font-semibold font-bold ml-1">Búsqueda</label>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-sys-text-dark" size={16} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-sys-text-muted font-semibold" size={16} />
             <input
               type="text"
               placeholder="Nombre o Cédula..."
@@ -233,7 +233,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
         </div>
 
         <div className="flex flex-col gap-1 w-full md:max-w-[180px]">
-          <label className="text-[10px] uppercase tracking-wider text-sys-text-dark font-bold ml-1">División</label>
+          <label className="text-[10px] uppercase tracking-wider text-sys-text-muted font-semibold font-bold ml-1">División</label>
           <select
             className="w-full rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none"
             value={filterServicioId}
@@ -248,7 +248,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
         </div>
 
         <div className="flex flex-col gap-1 w-full md:max-w-[180px]">
-          <label className="text-[10px] uppercase tracking-wider text-sys-text-dark font-bold ml-1">Departamento</label>
+          <label className="text-[10px] uppercase tracking-wider text-sys-text-muted font-semibold font-bold ml-1">Departamento</label>
           <select
             className="w-full rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none disabled:opacity-50"
             value={filterDeptoId}
@@ -268,10 +268,10 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-sm font-bold text-sys-primary uppercase tracking-widest">Seleccionar Fecha</h3>
               <div className="flex gap-1">
-                <button onClick={handlePrevMonth} className="p-1 hover:bg-white/5 rounded-lg text-sys-text-dark hover:text-sys-text transition-colors">
+                <button onClick={handlePrevMonth} className="p-1 hover:bg-sys-panel-hover rounded-lg text-sys-text-muted font-semibold hover:text-sys-text transition-colors">
                   <ChevronLeft size={18} />
                 </button>
-                <button onClick={handleNextMonth} className="p-1 hover:bg-white/5 rounded-lg text-sys-text-dark hover:text-sys-text transition-colors">
+                <button onClick={handleNextMonth} className="p-1 hover:bg-sys-panel-hover rounded-lg text-sys-text-muted font-semibold hover:text-sys-text transition-colors">
                   <ChevronRight size={18} />
                 </button>
               </div>
@@ -302,7 +302,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                       setShowCalendar(false); // Cerrar al seleccionar
                     }}
                     className={`h-8 w-8 rounded-lg text-[11px] font-medium transition-all flex items-center justify-center
-                      ${isSelected ? 'bg-sys-primary-dark text-sys-text shadow-lg scale-110' : 'text-sys-text-muted hover:bg-white/5 hover:text-sys-text'}
+                      ${isSelected ? 'bg-sys-primary text-white shadow-lg scale-110' : 'text-sys-text-muted hover:bg-sys-panel-hover hover:text-sys-text'}
                       ${isToday && !isSelected ? 'border border-sys-primary/50 text-sys-primary' : ''}
                     `}
                   >
@@ -313,7 +313,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
             </div>
             <button 
               onClick={() => setShowCalendar(false)}
-              className="mt-4 w-full py-2 text-[10px] uppercase font-bold text-sys-text-dark hover:text-sys-text transition-colors border-t border-sys-border"
+              className="mt-4 w-full py-2 text-[10px] uppercase font-bold text-sys-text-muted font-semibold hover:text-sys-text transition-colors border-t border-sys-border"
             >
               Cerrar Calendario
             </button>
@@ -344,13 +344,13 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
             <div className="flex gap-2 p-1 bg-sys-panel rounded-xl border border-sys-border w-fit">
               <button
                 onClick={() => setActiveTab('pendientes')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'pendientes' ? 'bg-sys-primary-dark text-sys-text shadow-lg' : 'text-sys-text-dark hover:text-zinc-300'}`}
+                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'pendientes' ? 'bg-sys-primary text-white shadow-lg' : 'text-sys-text-muted font-semibold hover:text-sys-text-muted font-semibold'}`}
               >
                 Pendientes por Marcar ({pendientes.length})
               </button>
               <button
                 onClick={() => setActiveTab('registrados')}
-                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'registrados' ? 'bg-sys-primary-dark text-sys-text shadow-lg' : 'text-sys-text-dark hover:text-zinc-300'}`}
+                className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'registrados' ? 'bg-sys-primary text-white shadow-lg' : 'text-sys-text-muted font-semibold hover:text-sys-text-muted font-semibold'}`}
               >
                 Asistencia Registrada ({asistieron.length})
               </button>
@@ -362,7 +362,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                 <div className="overflow-hidden rounded-2xl border border-sys-border bg-sys-panel/50 shadow-xl">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm text-sys-text-muted">
-                      <thead className="border-b border-sys-border bg-black/20 text-xs uppercase text-zinc-300">
+                      <thead className="border-b border-sys-border bg-sys-panel-hover text-xs uppercase text-sys-text-muted font-bold">
                         <tr>
                           <th className="px-6 py-4 font-medium">Empleado</th>
                           <th className="px-6 py-4 font-medium">Cédula</th>
@@ -374,10 +374,10 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                         {pendientes.map((emp: any) => {
                           const isEditing = editEmpId === emp.id
                           return (
-                            <tr key={emp.id} className="hover:bg-white/5 transition-colors">
+                            <tr key={emp.id} className="hover:bg-sys-panel-hover transition-colors">
                               <td className="px-6 py-4">
                                 <div className="flex items-center gap-3">
-                                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sys-panel-hover text-sys-text-dark">
+                                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sys-panel-hover text-sys-text-muted font-semibold">
                                     <Clock size={16} />
                                   </div>
                                   <span className="font-semibold text-sys-text">{emp.nombres} {emp.apellidos}</span>
@@ -395,13 +395,13 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                                       </div>
                                       <div className="flex gap-2">
                                         <button onClick={() => handleSaveEdit(emp.id, undefined)} className="text-[10px] font-bold text-sys-primary hover:underline">Guardar</button>
-                                        <button onClick={() => setEditEmpId(null)} className="text-[10px] font-bold text-sys-text-dark hover:underline">Cancelar</button>
+                                        <button onClick={() => setEditEmpId(null)} className="text-[10px] font-bold text-sys-text-muted font-semibold hover:underline">Cancelar</button>
                                       </div>
                                     </div>
                                   ) : (
                                     <>
-                                      <button onClick={() => startEdit(emp.id, null)} className="text-sys-text-dark hover:text-sys-visor" title="Editar manual"><Pencil size={16} /></button>
-                                      <button onClick={() => handleMarcarEntrada(emp.id)} className="rounded-lg bg-sys-primary-dark/20 px-3 py-1.5 text-xs font-bold text-sys-primary hover:bg-sys-primary-dark hover:text-sys-text transition-all border border-sys-primary/30">Marcar Entrada</button>
+                                      <button onClick={() => startEdit(emp.id, null)} className="text-sys-text-muted font-semibold hover:text-sys-visor" title="Editar manual"><Pencil size={16} /></button>
+                                      <button onClick={() => handleMarcarEntrada(emp.id)} className="rounded-lg bg-sys-primary/20 px-3 py-1.5 text-xs font-bold text-sys-primary hover:bg-sys-primary hover:text-white transition-all border border-sys-primary/30">Marcar Entrada</button>
                                     </>
                                   )}
                                 </div>
@@ -409,7 +409,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                             </tr>
                           )
                         })}
-                        {pendientes.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-dark italic">No hay empleados pendientes para este día.</td></tr>}
+                        {pendientes.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-muted font-semibold italic">No hay empleados pendientes para este día.</td></tr>}
                       </tbody>
                     </table>
                   </div>
@@ -423,7 +423,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                 <div className="overflow-hidden rounded-2xl border border-sys-border bg-sys-panel/50 shadow-xl">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm text-sys-text-muted">
-                      <thead className="border-b border-sys-border bg-black/20 text-xs uppercase text-zinc-300">
+                      <thead className="border-b border-sys-border bg-sys-panel-hover text-xs uppercase text-sys-text-muted font-bold">
                         <tr>
                           <th className="px-6 py-4 font-medium">Empleado</th>
                           <th className="px-6 py-4 font-medium text-center">Entrada</th>
@@ -438,7 +438,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                           const isEditing = editEmpId === emp.id
                           
                           return (
-                            <tr key={emp.id} className="hover:bg-white/5 transition-colors">
+                            <tr key={emp.id} className="hover:bg-sys-panel-hover transition-colors">
                               <td className="px-6 py-4">
                                 <div className="flex items-center gap-3">
                                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sys-primary/10 text-sys-primary">
@@ -459,14 +459,14 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                                       </div>
                                       <div className="flex gap-2">
                                         <button onClick={() => handleSaveEdit(emp.id, asistencia.id)} className="text-[10px] font-bold text-sys-primary hover:underline">Guardar</button>
-                                        <button onClick={() => setEditEmpId(null)} className="text-[10px] font-bold text-sys-text-dark hover:underline">Cancelar</button>
+                                        <button onClick={() => setEditEmpId(null)} className="text-[10px] font-bold text-sys-text-muted font-semibold hover:underline">Cancelar</button>
                                       </div>
                                     </div>
                                   ) : (
                                     <>
-                                      <button onClick={() => startEdit(emp.id, asistencia)} className="text-sys-text-dark hover:text-sys-visor" title="Editar"><Pencil size={16} /></button>
+                                      <button onClick={() => startEdit(emp.id, asistencia)} className="text-sys-text-muted font-semibold hover:text-sys-visor" title="Editar"><Pencil size={16} /></button>
                                       {!tieneSalida ? (
-                                        <button onClick={() => handleMarcarSalida(asistencia.id)} className="rounded-lg bg-sys-admin/20 px-3 py-1.5 text-xs font-bold text-sys-admin hover:bg-sys-admin hover:text-sys-text transition-all border border-sys-admin/30">Marcar Salida</button>
+                                        <button onClick={() => handleMarcarSalida(asistencia.id)} className="rounded-lg bg-sys-admin/20 px-3 py-1.5 text-xs font-bold text-sys-admin hover:bg-sys-admin hover:text-white transition-all border border-sys-admin/30">Marcar Salida</button>
                                       ) : (
                                         <span className="text-[10px] font-bold text-sys-primary/50 uppercase tracking-widest px-3">Completado</span>
                                       )}
@@ -477,7 +477,7 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
                             </tr>
                           )
                         })}
-                        {asistieron.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-dark italic">No hay registros de asistencia para este día.</td></tr>}
+                        {asistieron.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-muted font-semibold italic">No hay registros de asistencia para este día.</td></tr>}
                       </tbody>
                     </table>
                   </div>
@@ -492,3 +492,6 @@ export default function AsistenciasClient({ empleados, initialAsistencias, depar
     </div>
   )
 }
+
+
+

@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, LogOut, UserCircle2, Activity } from 'lucide-react'
+import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, UserCircle2, Activity } from 'lucide-react'
 import { createClient } from '@/utils/supabase/server'
 import { MobileNav } from './MobileNav'
+import { TopNavLinks } from './TopNavLinks'
 
 export async function TopNavbar() {
   const supabase = await createClient()
@@ -63,27 +64,7 @@ export async function TopNavbar() {
 
       {/* Navigation Bar (Desktop) */}
       <nav className="hidden md:flex h-12 items-center px-6 border-t border-sys-border bg-white">
-        <ul className="flex items-center gap-8 h-full">
-          {navigation.map((item) => (
-            <li key={item.name} className="h-full">
-              <Link
-                href={item.href}
-                className="flex items-center gap-2 h-full px-2 text-sm font-semibold text-sys-text transition-colors hover:text-sys-primary border-b-2 border-transparent hover:border-sys-primary"
-              >
-                <item.icon size={16} />
-                {item.name}
-              </Link>
-            </li>
-          ))}
-          <li className="ml-auto h-full">
-            <form action="/auth/signout" method="post" className="h-full">
-              <button className="flex items-center gap-2 h-full px-2 text-sm font-semibold text-sys-text-muted transition-colors hover:text-sys-danger border-b-2 border-transparent hover:border-sys-danger">
-                <LogOut size={16} />
-                CERRAR SESIÓN
-              </button>
-            </form>
-          </li>
-        </ul>
+        <TopNavLinks navigation={navigation} />
       </nav>
     </header>
   )

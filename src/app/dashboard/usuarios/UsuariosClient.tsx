@@ -91,7 +91,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-end rounded-2xl border border-sys-border bg-sys-panel/50 p-5 shadow-xl">
-        <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-sys-primary-dark px-4 py-2 text-sm font-medium text-sys-text hover:bg-sys-primary">
+        <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-2 rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white hover:bg-sys-primary">
           <Plus size={18} /> Nuevo Usuario
         </button>
       </div>
@@ -99,7 +99,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
       {/* Table */}
       <div className="min-w-[800px] rounded-2xl border border-sys-border bg-sys-panel/50 shadow-xl overflow-hidden">
         <table className="w-full text-left text-sm text-sys-text-muted whitespace-nowrap">
-            <thead className="border-b border-sys-border bg-black/20 text-xs uppercase text-zinc-300">
+            <thead className="border-b border-sys-border bg-sys-panel-hover text-xs uppercase text-sys-text-muted font-bold">
               <tr>
                 <th className="px-6 py-4 font-medium">Usuario</th>
                 <th className="px-6 py-4 font-medium">Correo Electrónico</th>
@@ -112,7 +112,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                 <tr 
                   key={u.id} 
                   onClick={() => { setSelectedUsuario(u); setIsDetailsOpen(true); }}
-                  className="border-b border-sys-border transition-colors hover:bg-white/10 cursor-pointer"
+                  className="border-b border-sys-border transition-colors hover:bg-sys-panel-hover cursor-pointer"
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                       </div>
                       <div>
                         <div className="font-medium text-sys-text">{u.nombres ? `${u.nombres} ${u.apellidos}` : 'Usuario del Sistema'}</div>
-                        {u.cedula && <div className="text-xs text-sys-text-dark">{u.nacionalidad}-{u.cedula}</div>}
+                        {u.cedula && <div className="text-xs text-sys-text-muted font-semibold">{u.nacionalidad}-{u.cedula}</div>}
                       </div>
                     </div>
                   </td>
@@ -137,12 +137,12 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex justify-end gap-3">
-                      <button onClick={(e) => { e.stopPropagation(); handleDelete(u.id); }} className="text-sys-text-dark hover:text-sys-danger transition-colors" title="Eliminar"><Trash2 size={18} /></button>
+                      <button onClick={(e) => { e.stopPropagation(); handleDelete(u.id); }} className="text-sys-text-muted font-semibold hover:text-sys-danger transition-colors" title="Eliminar"><Trash2 size={18} /></button>
                     </div>
                   </td>
                 </tr>
               ))}
-              {usuarios.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-dark">No se encontraron usuarios.</td></tr>}
+              {usuarios.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-muted font-semibold">No se encontraron usuarios.</td></tr>}
             </tbody>
           </table>
       </div>
@@ -153,7 +153,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
           <div className="flex w-full max-w-5xl flex-col bg-sys-bg shadow-2xl animate-in slide-in-from-right">
             <div className="flex items-center justify-between border-b border-sys-border p-6">
               <h2 className="text-xl font-bold text-sys-text">Perfil de Usuario</h2>
-              <button onClick={() => setIsDetailsOpen(false)} className="text-sys-text-dark hover:text-sys-text">✕</button>
+              <button onClick={() => setIsDetailsOpen(false)} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
             </div>
             
             <div className="flex flex-1 flex-col overflow-y-auto p-6 md:flex-row md:gap-8">
@@ -185,37 +185,37 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                 </div>
 
                 <div className="flex flex-col gap-6">
-                  <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Datos Personales</h3>
+                  <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Datos Personales</h3>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Cédula</span><span className="font-medium text-sys-text">{selectedUsuario.nacionalidad}-{selectedUsuario.cedula}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Sexo</span><span className="font-medium text-sys-text">{selectedUsuario.sexo === 'M' ? 'Masculino' : 'Femenino'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Fecha de Nacimiento</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_nacimiento)}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Teléfono</span><span className="font-medium text-sys-text">{selectedUsuario.telefono || '--'}</span></div>
-                      <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Dirección</span><span className="font-medium text-sys-text leading-relaxed">{selectedUsuario.direccion_habitacion || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Cédula</span><span className="font-medium text-sys-text">{selectedUsuario.nacionalidad}-{selectedUsuario.cedula}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Sexo</span><span className="font-medium text-sys-text">{selectedUsuario.sexo === 'M' ? 'Masculino' : 'Femenino'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Fecha de Nacimiento</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_nacimiento)}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Teléfono</span><span className="font-medium text-sys-text">{selectedUsuario.telefono || '--'}</span></div>
+                      <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Dirección</span><span className="font-medium text-sys-text leading-relaxed">{selectedUsuario.direccion_habitacion || '--'}</span></div>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Datos Laborales</h3>
+                  <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Datos Laborales</h3>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Cargo Nominal</span><span className="font-medium text-sys-text">{selectedUsuario.cargo_nominal || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Situación Laboral</span><span className="font-medium text-sys-text">{selectedUsuario.situacion_laboral || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Tipo de Personal</span><span className="font-medium text-sys-text">{selectedUsuario.tipo_personal || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ubicación Administrativa</span><span className="font-medium text-sys-text">{selectedUsuario.ubicacion_administrativa || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Código de Nómina</span><span className="font-medium text-sys-text">{selectedUsuario.codigo_nomina || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Vacaciones Disfrutadas</span><span className="font-medium text-sys-text">{selectedUsuario.vacaciones_disfrutadas || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ingreso Ministerio</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_ingreso_ministerio)}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Ingreso Admin. Pública</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_ingreso_admin_publica)}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Cargo Nominal</span><span className="font-medium text-sys-text">{selectedUsuario.cargo_nominal || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Situación Laboral</span><span className="font-medium text-sys-text">{selectedUsuario.situacion_laboral || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Tipo de Personal</span><span className="font-medium text-sys-text">{selectedUsuario.tipo_personal || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ubicación Administrativa</span><span className="font-medium text-sys-text">{selectedUsuario.ubicacion_administrativa || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Código de Nómina</span><span className="font-medium text-sys-text">{selectedUsuario.codigo_nomina || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Vacaciones Disfrutadas</span><span className="font-medium text-sys-text">{selectedUsuario.vacaciones_disfrutadas || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ingreso Ministerio</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_ingreso_ministerio)}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Ingreso Admin. Pública</span><span className="font-medium text-sys-text">{formatDate(selectedUsuario.fecha_ingreso_admin_publica)}</span></div>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-sys-border bg-black/20 p-5">
-                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-dark">Información Académica</h3>
+                  <div className="rounded-xl border border-sys-border bg-sys-panel-hover shadow-sm p-5">
+                    <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-sys-text-muted font-semibold">Información Académica</h3>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Nivel Académico</span><span className="font-medium text-sys-text">{selectedUsuario.nivel_academico || '--'}</span></div>
-                      <div className="flex flex-col"><span className="text-xs text-sys-text-dark">Profesión</span><span className="font-medium text-sys-text">{selectedUsuario.profesion || '--'}</span></div>
-                      <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-dark">Especialidad</span><span className="font-medium text-sys-text">{selectedUsuario.especialidad || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Nivel Académico</span><span className="font-medium text-sys-text">{selectedUsuario.nivel_academico || '--'}</span></div>
+                      <div className="flex flex-col"><span className="text-xs text-sys-text-muted font-semibold">Profesión</span><span className="font-medium text-sys-text">{selectedUsuario.profesion || '--'}</span></div>
+                      <div className="flex flex-col col-span-2"><span className="text-xs text-sys-text-muted font-semibold">Especialidad</span><span className="font-medium text-sys-text">{selectedUsuario.especialidad || '--'}</span></div>
                     </div>
                   </div>
                 </div>
@@ -231,7 +231,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
           <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-sys-border bg-sys-bg p-6 shadow-2xl">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-sys-text">Crear Usuario</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-sys-text-dark hover:text-sys-text">✕</button>
+              <button onClick={() => setIsModalOpen(false)} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
             </div>
             
             <form onSubmit={handleCreate} className="flex flex-col gap-6">
@@ -247,7 +247,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                     <label className="text-xs font-medium text-sys-text-muted">Contraseña temporal</label>
                     <div className="relative">
                       <input required type={showPassword ? "text" : "password"} placeholder="••••••••" minLength={6} autoComplete="new-password" className="w-full rounded-xl border border-sys-border bg-sys-panel px-4 py-2 pr-10 text-sm text-sys-text focus:border-sys-primary focus:outline-none" value={form.password} onChange={(e) => setForm({...form, password: e.target.value})} />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-sys-text-dark hover:text-sys-text z-10 touch-manipulation">
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-1 top-1/2 -translate-y-1/2 p-2 text-sys-text-muted font-semibold hover:text-sys-text z-10 touch-manipulation">
                         {showPassword ? <EyeOff size={16} className="pointer-events-none" /> : <Eye size={16} className="pointer-events-none" />}
                       </button>
                     </div>
@@ -313,8 +313,8 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
               {error && <div className="rounded-lg bg-sys-danger/10 p-3 text-sm text-sys-danger">{error}</div>}
 
               <div className="mt-4 flex justify-end gap-3 border-t border-sys-border pt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-white/5 hover:text-sys-text">Cancelar</button>
-                <button type="submit" disabled={isLoading} className="rounded-xl bg-sys-primary-dark px-4 py-2 text-sm font-medium text-sys-text hover:bg-sys-primary disabled:opacity-50">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="rounded-xl px-4 py-2 text-sm font-medium text-sys-text-muted hover:bg-sys-panel-hover hover:text-sys-text">Cancelar</button>
+                <button type="submit" disabled={isLoading} className="rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white hover:bg-sys-primary disabled:opacity-50">
                   {isLoading ? 'Creando...' : 'Crear Usuario'}
                 </button>
               </div>
@@ -325,3 +325,6 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
     </div>
   )
 }
+
+
+
