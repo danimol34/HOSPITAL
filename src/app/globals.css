@@ -9,32 +9,27 @@
   --font-family-base: Arial, Helvetica, sans-serif;
   
   /* Textos generales */
-  --text-main: #ffffff; /* Texto principal brillante (títulos, nombres) */
-  --text-muted: #a1a1aa; /* Texto secundario gris claro (correos, descripciones) */
-  --text-muted-dark: #71717a; /* Texto terciario gris oscuro (fechas, placeholders) */
+  --text-main: #0f172a; /* Texto principal oscuro */
+  --text-muted: #475569; /* Texto secundario gris */
+  --text-muted-dark: #94a3b8; /* Texto terciario gris claro */
 
   /* ========================================================
      2. FONDOS GENERALES DEL SISTEMA
      ======================================================== 
-     Controla el color del fondo de la página, los paneles, las tablas,
-     las listas de empleados y usuarios, y los calendarios.
   */
-  --bg-app: #09090b; /* Fondo general de toda la aplicación (muy oscuro) */
-  --bg-panel: #18181b; /* Fondo de los cuadros, tablas, formulario modal y calendario */
-  --bg-panel-hover: #27272a; /* Fondo de una fila (ej. lista de empleados) al pasar el mouse */
-  --border-panel: rgba(255, 255, 255, 0.1); /* Color de las líneas, bordes y separadores */
+  --bg-app: #f1f5f9; /* Fondo general claro */
+  --bg-panel: #ffffff; /* Fondo blanco para paneles y tarjetas */
+  --bg-panel-hover: #f8fafc; /* Fondo al pasar el mouse */
+  --border-panel: #e2e8f0; /* Bordes sutiles grises */
 
   /* ========================================================
      3. COLOR PRIMARIO (BOTONES, ÍCONOS Y DETALLES)
      ======================================================== 
-     Este es el color "Tema" del sistema. Se usa en botones de "Guardar",
-     los íconos de la sección "Estructura" (servicios médicos, etc.),
-     bordes de cuadros de texto seleccionados, y botones del calendario.
   */
-  --color-primary: #10b981; /* Verde esmeralda base */
-  --color-primary-hover: #34d399; /* Verde más claro para cuando pasas el mouse por botones */
-  --color-primary-dark: #059669; /* Verde oscuro para el fondo de botones principales */
-  --color-primary-transparent: rgba(16, 185, 129, 0.2); /* Verde transparente para etiquetas/badges */
+  --color-primary: #1d4ed8; /* Azul rey base */
+  --color-primary-hover: #2563eb; /* Azul brillante para hover */
+  --color-primary-dark: #1e3a8a; /* Azul oscuro */
+  --color-primary-transparent: rgba(29, 78, 216, 0.15); /* Azul transparente para insignias */
 
   /* ========================================================
      4. COLORES DE ESTADO Y ROLES

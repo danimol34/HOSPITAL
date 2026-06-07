@@ -39,24 +39,38 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
     .limit(10)
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
+      {/* Banner del Hospital */}
+      <div className="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg border border-sys-border">
+        <img 
+          src="/images/hospital-banner.jpg" 
+          alt="Hospital Nuestra Señora del Carmen" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-sys-primary-dark/80 to-transparent flex flex-col justify-center p-6 md:p-10">
+          <h2 className="text-2xl md:text-4xl font-bold text-white drop-shadow-md">
+            Hospital Nuestra Señora del Carmen
+          </h2>
+          <p className="text-white/90 mt-2 font-medium">Sistema Administrativo de Recursos Humanos</p>
+        </div>
+      </div>
+
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 className="text-2xl font-bold text-sys-text">Hospital Nuestra Señora del Carmen</h1>
-          <p className="text-sm text-sys-text-muted">Sistema Administrativo Interno</p>
+          <h1 className="text-xl font-bold text-sys-text">Resumen de Vacaciones</h1>
         </div>
         <DashboardSelector />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Widget 1: Finalización Próxima */}
-        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel/50 p-6 shadow-xl">
+        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-md">
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-sys-text">Finalización de vacaciones</h2>
               <p className="text-xs text-sys-text-dark">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-primary/10 text-sys-primary">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-primary-transparent text-sys-primary">
               <CalendarDays size={20} />
             </div>
           </div>
@@ -65,25 +79,25 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesActivas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_fin), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-black/20 p-4">
+                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-sys-bg p-4 border border-sys-border">
                     <div>
-                      <p className="font-medium text-zinc-200">{v.empleados.nombres} {v.empleados.apellidos}</p>
-                      <p className="text-xs text-sys-text-dark">Hasta {formatDate(v.fecha_fin)}</p>
+                      <p className="font-semibold text-sys-text">{v.empleados.nombres} {v.empleados.apellidos}</p>
+                      <p className="text-xs text-sys-text-muted">Hasta {formatDate(v.fecha_fin)}</p>
                     </div>
-                    <div className="rounded-lg bg-sys-admin/10 px-3 py-1.5 text-sm font-medium text-sys-admin">
+                    <div className="rounded-lg bg-sys-admin/10 px-3 py-1.5 text-sm font-bold text-sys-admin">
                       Regresa en {days} días
                     </div>
                   </div>
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-dark text-center py-8">No hay finalizaciones en los próximos {daysRange} días.</p>
+              <p className="text-sm text-sys-text-dark text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay finalizaciones en los próximos {daysRange} días.</p>
             )}
           </div>
         </div>
 
         {/* Widget 2: Inicio Próximo */}
-        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel/50 p-6 shadow-xl">
+        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-md">
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-lg font-semibold text-sys-text">Inicio de vacaciones</h2>
@@ -98,19 +112,19 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesProximas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_inicio), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-black/20 p-4">
+                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-sys-bg p-4 border border-sys-border">
                     <div>
-                      <p className="font-medium text-zinc-200">{v.empleados.nombres} {v.empleados.apellidos}</p>
-                      <p className="text-xs text-sys-text-dark">Desde {formatDate(v.fecha_inicio)}</p>
+                      <p className="font-semibold text-sys-text">{v.empleados.nombres} {v.empleados.apellidos}</p>
+                      <p className="text-xs text-sys-text-muted">Desde {formatDate(v.fecha_inicio)}</p>
                     </div>
-                    <div className="rounded-lg bg-sys-visor/10 px-3 py-1.5 text-sm font-medium text-sys-visor">
+                    <div className="rounded-lg bg-sys-visor/10 px-3 py-1.5 text-sm font-bold text-sys-visor">
                       Inicia en {days} días
                     </div>
                   </div>
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-dark text-center py-8">No hay inicios programados en los próximos {daysRange} días.</p>
+              <p className="text-sm text-sys-text-dark text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay inicios programados en los próximos {daysRange} días.</p>
             )}
           </div>
         </div>
