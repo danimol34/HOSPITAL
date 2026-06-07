@@ -10,17 +10,17 @@ export default async function LoginPage(props: { searchParams: Promise<{ message
       <div className="w-full max-w-md overflow-hidden rounded-2xl bg-sys-panel shadow-2xl ring-1 ring-white/10">
         <div className="p-8">
           <div className="mb-8 flex flex-col items-center justify-center text-center">
-            <div className="mb-6 mt-10 flex justify-center">
+            <div className="mb-6 mt-6 flex justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-blue-800 p-6 shadow-lg mx-auto w-fit">
               <Image
                 src="/logo.png"
                 alt="Nuestra Señora del Carmen"
-                width={240}
-                height={90}
-                className="object-contain"
+                width={220}
+                height={80}
+                className="object-contain drop-shadow-md"
                 priority
               />
             </div>
-            <p className="mt-2 text-sm text-sys-text-muted">
+            <p className="mt-2 text-sm font-semibold text-slate-500">
               Sistema Administrativo Interno
             </p>
           </div>
