@@ -2,10 +2,22 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LogOut } from 'lucide-react'
+import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, LogOut } from 'lucide-react'
 
-export function TopNavLinks({ navigation }: { navigation: any[] }) {
+export function TopNavLinks({ rol }: { rol: string }) {
   const pathname = usePathname()
+
+  const navigation = [
+    { name: 'INICIO', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'EMPLEADOS', href: '/dashboard/empleados', icon: Users },
+    { name: 'VACACIONES', href: '/dashboard/vacaciones', icon: CalendarDays },
+  ]
+
+  if (rol === 'admin') {
+    navigation.push({ name: 'ASISTENCIAS', href: '/dashboard/asistencias', icon: Clock })
+    navigation.push({ name: 'ESTRUCTURA', href: '/dashboard/estructura', icon: Settings })
+    navigation.push({ name: 'USUARIOS', href: '/dashboard/usuarios', icon: UserCog })
+  }
 
   return (
     <ul className="flex items-center gap-8 h-full">

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, UserCircle2, Activity } from 'lucide-react'
+import { UserCircle2, Activity } from 'lucide-react'
 import { createClient } from '@/utils/supabase/server'
 import { MobileNav } from './MobileNav'
 import { TopNavLinks } from './TopNavLinks'
@@ -17,18 +17,6 @@ export async function TopNavbar() {
       perfil = data
       rol = data.rol
     }
-  }
-
-  const navigation = [
-    { name: 'INICIO', href: '/dashboard', icon: LayoutDashboard },
-    { name: 'EMPLEADOS', href: '/dashboard/empleados', icon: Users },
-    { name: 'VACACIONES', href: '/dashboard/vacaciones', icon: CalendarDays },
-  ]
-
-  if (rol === 'admin') {
-    navigation.push({ name: 'ASISTENCIAS', href: '/dashboard/asistencias', icon: Clock })
-    navigation.push({ name: 'ESTRUCTURA', href: '/dashboard/estructura', icon: Settings })
-    navigation.push({ name: 'USUARIOS', href: '/dashboard/usuarios', icon: UserCog })
   }
 
   return (
@@ -64,7 +52,7 @@ export async function TopNavbar() {
 
       {/* Navigation Bar (Desktop) */}
       <nav className="hidden md:flex h-12 items-center px-6 border-t border-sys-border bg-white">
-        <TopNavLinks navigation={navigation} />
+        <TopNavLinks rol={rol} />
       </nav>
     </header>
   )
