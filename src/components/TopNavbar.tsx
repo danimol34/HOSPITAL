@@ -21,6 +21,12 @@ export async function TopNavbar() {
 
   return (
     <header className="relative z-50 flex h-auto flex-col border-b border-sys-border bg-sys-panel shadow-sm">
+      {/* Banner de Logos Gubernamentales */}
+      <div className="flex w-full items-center justify-between bg-white px-4 py-2 border-b border-sys-border">
+        <img src="/ministerio.png" alt="Ministerio" className="h-10 sm:h-12 object-contain" />
+        <img src="/salud.png" alt="Salud" className="h-10 sm:h-12 object-contain" />
+      </div>
+
       {/* Superior Bar: Logo and Profile */}
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex items-center gap-3">
