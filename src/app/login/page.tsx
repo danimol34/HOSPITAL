@@ -7,12 +7,12 @@ export default async function LoginPage(props: { searchParams: Promise<{ message
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center p-4 overflow-hidden">
-      {/* Background Image with Blur */}
+      {/* Background Image with slight Blur */}
       <div 
-        className="absolute inset-[-20px] z-0 bg-[url('/images/fondo.jpeg')] bg-cover bg-center bg-no-repeat blur-sm"
+        className="absolute inset-[-20px] z-0 bg-[url('/images/fondo.jpeg')] bg-cover bg-center bg-no-repeat blur-[2px]"
       />
       {/* Overlay to ensure the login card stands out */}
-      <div className="absolute inset-0 z-0 bg-white/30 dark:bg-black/40" />
+      <div className="absolute inset-0 z-0 bg-white/10 dark:bg-black/20" />
 
       <div className="relative z-10 w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 dark:bg-sys-panel dark:ring-white/10">
         <div className="p-8">
