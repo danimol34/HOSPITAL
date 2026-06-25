@@ -22,7 +22,7 @@ export async function TopNavbar() {
     <header className="relative z-40 flex h-20 shrink-0 w-full items-center justify-between border-b border-sys-border bg-white px-4 shadow-sm md:px-8">
       {/* Title */}
       <div className="flex items-center gap-3">
-        <Activity size={28} className="text-sys-primary hidden md:block" />
+        <img src="/logo.png" alt="Logo" className="h-10 w-10 object-contain hidden md:block" />
         <h1 className="text-base font-bold text-sys-primary-dark tracking-wide hidden sm:block">
           HOSPITAL NUESTRA SEÑORA DEL CARMEN - RRHH
         </h1>
@@ -33,24 +33,6 @@ export async function TopNavbar() {
 
       {/* Profile & Mobile Menu */}
       <div className="flex items-center gap-4 md:gap-6">
-        {/* Notifications Icon (Optional placeholder) */}
-        <button className="text-sys-text-muted hover:text-sys-primary relative">
-          <Bell size={20} />
-          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-sys-danger text-[10px] font-bold text-white">
-            2
-          </span>
-        </button>
-
-        {/* Profile Info */}
-        <div className="hidden md:flex flex-col items-end">
-          <span className="text-sm font-bold text-sys-text">
-            {perfil?.nombre || 'Usuario'}
-          </span>
-          <span className="text-xs font-medium text-sys-text-muted capitalize">
-            {rol}
-          </span>
-        </div>
-
         <Link href="/dashboard/perfil" className="group flex items-center justify-center h-10 w-10 overflow-hidden rounded-full bg-sys-panel-hover transition-all hover:ring-2 hover:ring-sys-primary hover:ring-offset-2">
           {perfil?.avatar_url ? (
             <img src={perfil.avatar_url} alt="Perfil" className="h-full w-full object-cover" />
