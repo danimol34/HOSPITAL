@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { CalendarDays, Stethoscope, FileText, Plus } from 'lucide-react'
-import { getPermisos } from './actions'
+import { CalendarDays, Stethoscope, FileText, Plus, Trash2 } from 'lucide-react'
+import { getPermisos, deletePermiso } from './actions'
 
 export const dynamic = 'force-dynamic'
 
@@ -58,6 +58,7 @@ export default async function PermisosPage() {
                   <th className="px-6 py-4 font-medium">Cédula</th>
                   <th className="px-6 py-4 font-medium">Tipo de Permiso</th>
                   <th className="px-6 py-4 font-medium">Período del Permiso</th>
+                  <th className="px-6 py-4 font-medium">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,11 +87,23 @@ export default async function PermisosPage() {
                       Desde: {formatDate(p.fecha_inicio)}<br/>
                       Hasta: {formatDate(p.fecha_culminacion)}
                     </td>
+                    <td className="px-6 py-4">
+                      <form action={deletePermiso}>
+                        <input type="hidden" name="id" value={p.id} />
+                        <button 
+                          type="submit" 
+                          className="p-2 rounded-lg text-sys-text-muted hover:bg-red-50 hover:text-sys-danger transition-colors"
+                          title="Eliminar historial"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      </form>
+                    </td>
                   </tr>
                 ))}
                 {permisos.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="py-12 text-center text-sys-text-muted">
+                    <td colSpan={6} className="py-12 text-center text-sys-text-muted">
                       <div className="flex flex-col items-center gap-2">
                         <FileText size={32} className="text-sys-border" />
                         <span className="font-semibold text-sm">No se han generado planillas aún.</span>
