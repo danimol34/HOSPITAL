@@ -17,7 +17,6 @@ export default function RepososPage() {
     cedula: '',
     cargo: '',
     anexo: '',
-    horas: '',
     fecha_inicio: '',
     fecha_culminacion: '',
     observacion: '',
@@ -138,11 +137,6 @@ export default function RepososPage() {
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold text-sys-text-muted uppercase">Constancia Anexa de Reposo por</label>
               <input type="text" name="anexo" value={form.anexo} onChange={handleChange} placeholder="Ej: Enfermedad, Reposo Pre-Natal..." className="rounded-xl border border-sys-border bg-sys-panel px-4 py-2 text-sm focus:border-sys-primary focus:outline-none" />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-sys-text-muted uppercase">Duración (Horas)</label>
-              <input type="number" name="horas" value={form.horas} onChange={handleChange} className="rounded-xl border border-sys-border bg-sys-panel px-4 py-2 text-sm focus:border-sys-primary focus:outline-none" />
             </div>
 
             <div className="flex flex-col gap-2">
