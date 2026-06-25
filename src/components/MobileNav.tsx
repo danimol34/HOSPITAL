@@ -35,7 +35,7 @@ export function MobileNav({ rol }: { rol: string }) {
         <div className="fixed inset-0 z-[100] flex">
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)}></div>
           
-          <div className="relative flex w-64 max-w-xs flex-col bg-sys-panel p-6 shadow-2xl transition-transform border-l border-sys-border ml-auto">
+          <div className="relative flex w-64 max-w-xs flex-col bg-sys-panel p-6 shadow-2xl transition-transform border-r border-sys-border mr-auto">
             <button 
               onClick={() => setIsOpen(false)}
               className="absolute right-4 top-4 rounded-lg p-2 text-sys-text-muted hover:bg-sys-primary-transparent hover:text-sys-primary"
