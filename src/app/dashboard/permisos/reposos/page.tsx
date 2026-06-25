@@ -20,7 +20,8 @@ export default function RepososPage() {
     horas: '',
     fecha_inicio: '',
     fecha_culminacion: '',
-    observacion: ''
+    observacion: '',
+    codigo: ''
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -59,7 +60,17 @@ export default function RepososPage() {
       const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true })
 
       // Setear los datos en la plantilla
-      doc.render(form)
+      // Separar fechas
+      const [a_gen, m_gen, d_gen] = form.fecha_solicitud.split('-')
+      const [a_desde, m_desde, d_desde] = form.fecha_inicio.split('-')
+      const [a_hasta, m_hasta, d_hasta] = form.fecha_culminacion.split('-')
+
+      doc.render({
+        ...form,
+        d_gen, m_gen, a_gen,
+        d_desde, m_desde, a_desde,
+        d_hasta, m_hasta, a_hasta
+      })
 
       const out = doc.getZip().generate({
         type: 'blob',
@@ -117,6 +128,11 @@ export default function RepososPage() {
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold text-sys-text-muted uppercase">Cargo</label>
               <input required type="text" name="cargo" value={form.cargo} onChange={handleChange} className="rounded-xl border border-sys-border bg-sys-panel px-4 py-2 text-sm focus:border-sys-primary focus:outline-none" />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-bold text-sys-text-muted uppercase">Código</label>
+              <input type="text" name="codigo" value={form.codigo} onChange={handleChange} className="rounded-xl border border-sys-border bg-sys-panel px-4 py-2 text-sm focus:border-sys-primary focus:outline-none" />
             </div>
 
             <div className="flex flex-col gap-2">
