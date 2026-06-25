@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, LogOut, HelpCircle } from 'lucide-react'
+import { LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, LogOut, HelpCircle, FileText } from 'lucide-react'
 
 export function Sidebar({ rol }: { rol: string }) {
   const pathname = usePathname()
@@ -16,6 +16,8 @@ export function Sidebar({ rol }: { rol: string }) {
   if (rol === 'admin') {
     navigation.push({ name: 'Asistencias', href: '/dashboard/asistencias', icon: Clock })
     navigation.push({ name: 'Estructura', href: '/dashboard/estructura', icon: Settings })
+    navigation.push({ name: 'Permisos (Vacaciones)', href: '/dashboard/permisos/vacaciones', icon: FileText })
+    navigation.push({ name: 'Permisos (Reposos)', href: '/dashboard/permisos/reposos', icon: FileText })
     navigation.push({ name: 'Usuarios', href: '/dashboard/usuarios', icon: UserCog })
   }
 
