@@ -54,10 +54,10 @@ export function Sidebar({ rol }: { rol: string }) {
         <div className="rounded-xl border border-sys-border p-4 bg-gray-50/50">
           <h4 className="text-sm font-bold text-sys-text mb-1">¿Necesitas ayuda?</h4>
           <p className="text-xs text-sys-text-muted mb-3">Consulta nuestras guías o contacta soporte.</p>
-          <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-sys-border bg-white px-3 py-2 text-xs font-semibold text-sys-text hover:bg-gray-50">
+          <Link href="/dashboard/ayuda" className="flex w-full items-center justify-center gap-2 rounded-lg border border-sys-border bg-white px-3 py-2 text-xs font-semibold text-sys-text hover:bg-gray-50">
             Ir a ayuda
             <HelpCircle size={14} />
-          </button>
+          </Link>
         </div>
 
         <form action="/auth/signout" method="post">

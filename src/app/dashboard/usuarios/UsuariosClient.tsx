@@ -104,7 +104,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                 <th className="px-6 py-4 font-medium">Usuario</th>
                 <th className="px-6 py-4 font-medium">Correo Electrónico</th>
                 <th className="px-6 py-4 font-medium">Rol</th>
-                <th className="px-6 py-4 font-medium text-right">Acciones</th>
+
               </tr>
             </thead>
             <tbody>
@@ -135,11 +135,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
                       {u.rol === 'admin' ? 'Administrador' : 'Visor'}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={(e) => { e.stopPropagation(); handleDelete(u.id); }} className="text-sys-text-muted font-semibold hover:text-sys-danger transition-colors" title="Eliminar"><Trash2 size={18} /></button>
-                    </div>
-                  </td>
+
                 </tr>
               ))}
               {usuarios.length === 0 && <tr><td colSpan={4} className="py-8 text-center text-sys-text-muted font-semibold">No se encontraron usuarios.</td></tr>}
