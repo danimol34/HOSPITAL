@@ -16,3 +16,18 @@ export async function savePermiso(data: any) {
   }
   return { success: true, data: result }
 }
+
+export async function getPermisos() {
+  const supabase = await createClient()
+  
+  const { data: result, error } = await supabase
+    .from('permisos')
+    .select('*')
+    .order('creado_en', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching permisos:', error)
+    return { success: false, error: error.message, data: [] }
+  }
+  return { success: true, data: result || [] }
+}

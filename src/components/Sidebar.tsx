@@ -16,8 +16,7 @@ export function Sidebar({ rol }: { rol: string }) {
   if (rol === 'admin') {
     navigation.push({ name: 'Asistencias', href: '/dashboard/asistencias', icon: Clock })
     navigation.push({ name: 'Estructura', href: '/dashboard/estructura', icon: Settings })
-    navigation.push({ name: 'Permisos (Vacaciones)', href: '/dashboard/permisos/vacaciones', icon: FileText })
-    navigation.push({ name: 'Permisos (Reposos)', href: '/dashboard/permisos/reposos', icon: FileText })
+    navigation.push({ name: 'Permisos', href: '/dashboard/permisos', icon: FileText })
     navigation.push({ name: 'Usuarios', href: '/dashboard/usuarios', icon: UserCog })
   }
 
