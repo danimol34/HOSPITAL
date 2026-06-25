@@ -63,7 +63,11 @@ export default function VacacionesPage() {
       const doc = new Docxtemplater(zip, { paragraphLoop: true, linebreaks: true })
 
       // Setear los datos en la plantilla
-      doc.render(form)
+      const [a_gen, m_gen, d_gen] = form.fecha_solicitud.split('-')
+      doc.render({
+        ...form,
+        d_gen, m_gen, a_gen
+      })
 
       const out = doc.getZip().generate({
         type: 'blob',
