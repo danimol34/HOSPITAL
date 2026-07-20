@@ -97,7 +97,7 @@ export default async function PermisosPage() {
         {error ? (
           <div className="p-6 text-sys-danger text-sm font-medium">Error al cargar el historial: {error}</div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto pb-32">
             <table className="w-full text-left text-sm text-sys-text-muted whitespace-nowrap">
               <thead className="border-b border-sys-border bg-sys-panel-hover text-xs uppercase text-sys-text-muted font-bold">
                 <tr>
@@ -137,11 +137,11 @@ export default async function PermisosPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
-                        <div className="relative group">
-                          <button type="button" className="p-2 rounded-lg text-sys-text-muted hover:bg-blue-50 hover:text-sys-primary transition-colors" title="Añadir nuevo permiso">
+                        <details className="relative group">
+                          <summary className="p-2 rounded-lg text-sys-text-muted hover:bg-blue-50 hover:text-sys-primary transition-colors cursor-pointer list-none flex items-center" title="Añadir nuevo permiso">
                             <Plus size={18} />
-                          </button>
-                          <div className="absolute right-0 top-full mt-1 hidden group-hover:flex flex-col gap-1 w-40 bg-white border border-sys-border rounded-xl shadow-lg p-2 z-10">
+                          </summary>
+                          <div className="absolute right-0 top-full mt-1 flex flex-col gap-1 w-40 bg-white border border-sys-border rounded-xl shadow-lg p-2 z-50">
                             <Link href={`/dashboard/permisos/vacaciones?cedula=${p.cedula}&nombres=${encodeURIComponent(p.nombres)}`} className="text-xs font-semibold text-sys-text hover:bg-blue-50 hover:text-blue-700 p-2 rounded-lg transition-colors flex items-center gap-2">
                               <CalendarDays size={14} /> Vacaciones
                             </Link>
@@ -149,7 +149,7 @@ export default async function PermisosPage() {
                               <Stethoscope size={14} /> Reposo
                             </Link>
                           </div>
-                        </div>
+                        </details>
                         <form action={deletePermiso}>
                           <input type="hidden" name="id" value={p.id} />
                           <button 
