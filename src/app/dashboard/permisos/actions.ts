@@ -32,9 +32,9 @@ export async function getPermisos() {
   return { success: true, data: result || [] }
 }
 
-export async function deletePermiso(formData: FormData) {
+export async function deletePermiso(formData: FormData): Promise<void> {
   const id = formData.get('id') as string
-  if (!id) return { success: false, error: 'ID is required' }
+  if (!id) return
   
   const supabase = await createClient()
   const { error } = await supabase
@@ -44,9 +44,8 @@ export async function deletePermiso(formData: FormData) {
 
   if (error) {
     console.error('Error deleting permiso:', error)
-    return { success: false, error: error.message }
+    return
   }
   
   revalidatePath('/dashboard/permisos')
-  return { success: true }
 }

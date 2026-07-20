@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
-import { CalendarDays, ArrowRight } from 'lucide-react'
+import { CalendarDays, ArrowRight, Users, UserCheck, UserX } from 'lucide-react'
 import { differenceInDays, parseISO } from 'date-fns'
 import DashboardSelector from './DashboardSelector'
 
@@ -38,6 +38,14 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
     .order('fecha_inicio', { ascending: true })
     .limit(10)
 
+  const { data: empleadosData } = await supabase
+    .from('empleados')
+    .select('situacion_laboral')
+
+  const totalEmpleados = empleadosData?.length || 0;
+  const activos = empleadosData?.filter(e => e.situacion_laboral === 'ACTIVO').length || 0;
+  const inactivos = totalEmpleados - activos;
+
   return (
     <div className="flex flex-col gap-6">
       {/* Banner del Hospital */}
@@ -57,9 +65,40 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
 
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
-          <h1 className="text-xl font-bold text-sys-text">Resumen de Vacaciones</h1>
+          <h1 className="text-xl font-bold text-sys-text">Resumen General</h1>
         </div>
         <DashboardSelector />
+      </div>
+
+      {/* Empleados Stats */}
+      <div className="grid gap-6 md:grid-cols-3">
+        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+            <Users size={24} />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-sys-text-muted">Total Empleados</p>
+            <p className="text-2xl font-bold text-sys-text">{totalEmpleados}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+            <UserCheck size={24} />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-sys-text-muted">Activos</p>
+            <p className="text-2xl font-bold text-sys-text">{activos}</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-rose-600">
+            <UserX size={24} />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-sys-text-muted">Inactivos</p>
+            <p className="text-2xl font-bold text-sys-text">{inactivos}</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const error = request.nextUrl.searchParams.get('error')
   const errorDescription = request.nextUrl.searchParams.get('error_description')
 
