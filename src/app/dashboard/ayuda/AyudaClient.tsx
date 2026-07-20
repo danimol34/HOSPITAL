@@ -209,7 +209,10 @@ export default function AyudaClient() {
                     <Play size={16} className="text-red-500 fill-red-500" /> Video Tutorial
                   </h3>
                 </div>
-                <div className="relative aspect-video bg-gray-900 group cursor-pointer flex items-center justify-center">
+                <div 
+                  className="relative aspect-video bg-gray-900 group cursor-pointer flex items-center justify-center"
+                  onClick={() => alert("Función simulada: El reproductor de video se abrirá aquí próximamente.")}
+                >
                   <div className="absolute inset-0 bg-sys-primary/20 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity"></div>
                   <div className="relative z-10 flex flex-col items-center gap-3">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600/90 text-white shadow-xl group-hover:scale-110 transition-transform">
@@ -230,7 +233,10 @@ export default function AyudaClient() {
                 </div>
                 
                 {/* Mock UI Box */}
-                <div className="aspect-[16/9] w-full rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex flex-col items-center justify-center relative overflow-hidden">
+                <div 
+                  className="aspect-[16/9] w-full rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+                  onClick={() => alert("Función simulada: Al hacer clic aquí se abriría la captura en pantalla completa.")}
+                >
                   <div className="absolute top-4 left-4 right-4 h-8 bg-white border border-gray-200 rounded flex items-center px-2 gap-2 shadow-sm">
                     <div className="h-3 w-3 rounded-full bg-red-400"></div>
                     <div className="h-3 w-3 rounded-full bg-amber-400"></div>
