@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Plus, Trash2, Pencil, Check, X, Circle, ChevronLeft, Building2 } from 'lucide-react'
+import { Plus, Trash2, Pencil, Check, X, ChevronLeft, Building2, Siren, Bed, Scissors, Stethoscope, ShieldPlus, Activity, Syringe, TestTube } from 'lucide-react'
 
 export default function EstructuraClient({ initialServicios, initialDepartamentos }: any) {
   const supabase = createClient()
@@ -85,7 +85,6 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
   const divisionActual = servicios.find((s: any) => s.id === selectedDivisionId)
   const deptosMostrar = departamentos.filter((d: any) => d.servicio_id === selectedDivisionId)
 
-  // Conteo de cargos
   const getCargosCount = (empleadosList: any[]) => {
     if (!empleadosList) return {}
     return empleadosList.reduce((acc: any, emp: any) => {
@@ -97,6 +96,30 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
 
   const globalCargos = getCargosCount(departamentos.flatMap((d: any) => d.empleados || []))
   const totalEmpleadosGlobal = Object.values(globalCargos).reduce((a: any, b: any) => a + b, 0) as number
+
+  // Helper para asignar icono dinámico al departamento
+  const getDepartmentIcon = (nombre: string) => {
+    const lower = nombre.toLowerCase()
+    if (lower.includes('emergencia')) return <Siren size={20} />
+    if (lower.includes('hospitalización')) return <Bed size={20} />
+    if (lower.includes('quirófano') || lower.includes('cirugía')) return <Scissors size={20} />
+    if (lower.includes('consulta') || lower.includes('clínica')) return <Stethoscope size={20} />
+    if (lower.includes('inmunización') || lower.includes('vacuna')) return <ShieldPlus size={20} />
+    if (lower.includes('fisioterapia') || lower.includes('rehabilitación')) return <Activity size={20} />
+    if (lower.includes('laboratorio')) return <TestTube size={20} />
+    return <Building2 size={20} />
+  }
+
+  // Helper para asignar color al cargo
+  const getCargoColor = (cargo: string) => {
+    const lower = cargo.toLowerCase()
+    if (lower.includes('médico') || lower.includes('medico')) return 'bg-red-500'
+    if (lower.includes('enfermero') || lower.includes('enfermera')) return 'bg-blue-500'
+    if (lower.includes('administrativo')) return 'bg-amber-500'
+    if (lower.includes('técnico') || lower.includes('tecnico')) return 'bg-emerald-500'
+    if (lower.includes('obrero') || lower.includes('limpieza')) return 'bg-purple-500'
+    return 'bg-gray-400'
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -198,11 +221,14 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 rounded-2xl border border-sys-border bg-sys-panel/50 p-6 shadow-xl md:flex-row md:items-center md:justify-between">
-            <h3 className="text-base font-semibold text-sys-text">Añadir Departamento</h3>
+          <div className="flex flex-col gap-4 rounded-2xl border border-sys-border bg-white p-6 shadow-sm md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="text-base font-semibold text-sys-text">Añadir Departamento</h3>
+              <p className="text-sm text-sys-text-muted mt-1">Crea un nuevo departamento dentro de esta división.</p>
+            </div>
             <form onSubmit={handleCrearDepartamento} className="flex w-full gap-2 md:max-w-md">
-              <input type="text" placeholder="Nombre del nuevo departamento" className="flex-1 rounded-xl border border-sys-border bg-sys-panel-hover/50 px-4 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none" value={nuevoDeptoNombre} onChange={(e) => setNuevoDeptoNombre(e.target.value)} />
-              <button type="submit" className="flex items-center gap-2 rounded-xl bg-sys-visor px-4 py-2 text-sm font-medium text-white hover:bg-sys-visor">
+              <input type="text" placeholder="Nombre del nuevo departamento" className="flex-1 rounded-xl border border-sys-border bg-white px-4 py-2 text-sm text-sys-text focus:border-sys-primary focus:outline-none focus:ring-2 focus:ring-sys-primary/10 transition-shadow" value={nuevoDeptoNombre} onChange={(e) => setNuevoDeptoNombre(e.target.value)} />
+              <button type="submit" className="flex items-center gap-2 rounded-xl bg-sys-primary px-4 py-2 text-sm font-medium text-white hover:bg-sys-primary-hover transition-colors shadow-sm">
                 <Plus size={18} /> Crear
               </button>
             </form>
@@ -210,10 +236,10 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
 
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {deptosMostrar.map((d: any) => (
-              <div key={d.id} className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-sys-border bg-sys-panel-hover shadow-sm p-5 shadow-lg transition-all hover:border-sys-visor/50 hover:bg-sys-panel-hover">
+              <div key={d.id} className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-sys-border bg-white shadow-sm p-6 hover:border-sys-primary/30 hover:shadow-md transition-all">
                 {editDeptoId === d.id ? (
                   <div className="flex flex-1 items-center gap-2">
-                    <input type="text" value={editDeptoNombre} onChange={(e) => setEditDeptoNombre(e.target.value)} className="w-full rounded border border-sys-border bg-sys-panel-hover px-2 py-1 text-sm text-sys-text outline-none" autoFocus />
+                    <input type="text" value={editDeptoNombre} onChange={(e) => setEditDeptoNombre(e.target.value)} className="w-full rounded border border-sys-border bg-sys-panel-hover px-2 py-1 text-sm text-sys-text outline-none focus:border-sys-primary" autoFocus />
                     <button onClick={() => handleEditDepto(d.id)} className="text-sys-primary hover:text-sys-primary-hover"><Check size={18} /></button>
                     <button onClick={() => setEditDeptoId(null)} className="text-sys-text-muted font-semibold hover:text-sys-text"><X size={18} /></button>
                   </div>
@@ -221,36 +247,44 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                   <>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sys-visor/20 text-sys-visor">
-                          <Circle size={14} fill="currentColor" />
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-sys-primary">
+                          {getDepartmentIcon(d.nombre)}
                         </div>
                         <h3 className="font-semibold text-sys-text">{d.nombre}</h3>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <button onClick={() => { setEditDeptoId(d.id); setEditDeptoNombre(d.nombre); }} className="text-sys-text-muted font-semibold hover:text-sys-visor transition-colors" title="Editar">
+                      <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onClick={() => { setEditDeptoId(d.id); setEditDeptoNombre(d.nombre); }} className="text-sys-text-muted hover:text-sys-primary transition-colors p-1" title="Editar">
                           <Pencil size={16} />
                         </button>
-                        <button onClick={() => handleEliminarDepartamento(d.id)} className="text-sys-text-muted font-semibold hover:text-sys-danger transition-colors" title="Eliminar">
+                        <button onClick={() => handleEliminarDepartamento(d.id)} className="text-sys-text-muted hover:text-sys-danger transition-colors p-1" title="Eliminar">
                           <Trash2 size={16} />
                         </button>
                       </div>
                     </div>
                     
-                    <div className="mt-4">
-                      <p className="text-sm font-medium text-sys-visor">
-                        {d.empleados ? d.empleados.length : 0} Empleado{d.empleados?.length !== 1 ? 's' : ''} registrado{d.empleados?.length !== 1 ? 's' : ''}
-                      </p>
+                    <div className="mt-6 flex-1 flex flex-col">
+                      <p className="text-[13px] font-bold text-sys-text mb-3">Personal Nominal:</p>
                       
-                      {d.empleados && d.empleados.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-sys-border/50">
+                      {d.empleados && d.empleados.length > 0 ? (
+                        <div className="grid grid-cols-2 gap-x-2 gap-y-3 mb-6">
                           {Object.entries(getCargosCount(d.empleados)).map(([cargo, count]) => (
-                            <span key={cargo} className="inline-flex items-center rounded-lg bg-sys-panel px-2 py-1 text-xs font-semibold text-sys-text-muted border border-sys-border">
-                              {cargo}: {count as number}
-                            </span>
+                            <div key={cargo} className="flex items-center gap-2">
+                              <div className={`w-2 h-2 rounded-full shrink-0 ${getCargoColor(cargo)}`}></div>
+                              <span className="text-xs font-medium text-sys-text-muted truncate" title={cargo}>
+                                {cargo}: <span className="text-sys-text font-bold">{count as number}</span>
+                              </span>
+                            </div>
                           ))}
                         </div>
+                      ) : (
+                        <p className="text-xs text-sys-text-muted italic mb-6">No hay personal registrado</p>
                       )}
+                      
+                      <div className="mt-auto bg-gray-50 rounded-xl p-3 flex items-center justify-between border border-sys-border/50">
+                        <span className="text-sm font-bold text-sys-text">Total Departamento:</span>
+                        <span className="text-sm font-bold text-sys-primary">{d.empleados ? d.empleados.length : 0}</span>
+                      </div>
                     </div>
                   </>
                 )}
