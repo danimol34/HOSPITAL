@@ -126,25 +126,6 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
       {!selectedDivisionId ? (
         // VISTA: DIVISIONES
         <div className="flex flex-col gap-6">
-          
-          {/* Panel Resumen Global */}
-          <div className="flex flex-col gap-4 rounded-2xl border border-sys-border bg-sys-panel/50 p-6 shadow-xl">
-            <div>
-              <h2 className="text-lg font-semibold text-sys-text">Resumen Global del Personal</h2>
-              <p className="text-sm text-sys-text-muted">Totalidad de empleados activos registrados en la estructura: <span className="font-bold">{totalEmpleadosGlobal}</span></p>
-            </div>
-            {Object.keys(globalCargos).length > 0 ? (
-              <div className="flex flex-wrap gap-2 mt-2">
-                {Object.entries(globalCargos).sort((a, b) => (b[1] as number) - (a[1] as number)).map(([cargo, count]) => (
-                  <span key={cargo} className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700 border border-blue-200 shadow-sm">
-                    {cargo}: {count as number}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-sys-text-muted italic">No hay empleados registrados en la estructura aún.</p>
-            )}
-          </div>
 
           <div className="flex flex-col gap-4 rounded-2xl border border-sys-border bg-sys-panel/50 p-6 shadow-xl md:flex-row md:items-center md:justify-between">
             <div>
