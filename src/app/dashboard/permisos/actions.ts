@@ -14,6 +14,30 @@ export async function savePermiso(data: any) {
     console.error('Error saving permiso:', error)
     return { success: false, error: error.message }
   }
+
+  // Automatización: Si es vacaciones, registrar automáticamente en la tabla vacaciones
+  if (data.tipo === 'vacaciones' && data.cedula) {
+    const { data: empData } = await supabase
+      .from('empleados')
+      .select('id')
+      .eq('cedula', data.cedula)
+      .single()
+
+    if (empData) {
+      const { error: vacError } = await supabase
+        .from('vacaciones')
+        .insert([{
+          empleado_id: empData.id,
+          fecha_inicio: data.fecha_inicio,
+          fecha_fin: data.fecha_culminacion
+        }])
+      
+      if (vacError) {
+        console.error('Error auto-syncing vacaciones:', vacError)
+      }
+    }
+  }
+
   return { success: true, data: result }
 }
 
