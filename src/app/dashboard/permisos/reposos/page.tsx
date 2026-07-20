@@ -1,20 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import PizZip from 'pizzip'
 import Docxtemplater from 'docxtemplater'
 import { saveAs } from 'file-saver'
 import { savePermiso } from '../actions'
 
-export default function RepososPage() {
+function RepososForm() {
+  const searchParams = useSearchParams()
+  const defaultNombres = searchParams.get('nombres') || ''
+  const defaultCedula = searchParams.get('cedula') || ''
+
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
   const [form, setForm] = useState({
     fecha_solicitud: '',
-    nombres: '',
-    cedula: '',
+    nombres: defaultNombres,
+    cedula: defaultCedula,
     cargo: '',
     anexo: '',
     fecha_inicio: '',
@@ -163,5 +168,13 @@ export default function RepososPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function RepososPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-sys-text-muted">Cargando formulario...</div>}>
+      <RepososForm />
+    </Suspense>
   )
 }
