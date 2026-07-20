@@ -248,11 +248,11 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                       <p className="text-[13px] font-bold text-sys-text mb-3">Personal Nominal:</p>
                       
                       {d.empleados && d.empleados.length > 0 ? (
-                        <div className="grid grid-cols-2 gap-x-2 gap-y-3 mb-6">
+                        <div className="flex flex-wrap gap-2 mb-6">
                           {Object.entries(getCargosCount(d.empleados)).map(([cargo, count]) => (
-                            <div key={cargo} className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-full shrink-0 ${getCargoColor(cargo)}`}></div>
-                              <span className="text-xs font-medium text-sys-text-muted truncate" title={cargo}>
+                            <div key={cargo} className="inline-flex items-start gap-1.5 bg-gray-50/80 border border-sys-border/60 rounded-lg px-2.5 py-1.5 flex-1 min-w-[120px]">
+                              <div className={`w-2 h-2 rounded-full shrink-0 mt-1 ${getCargoColor(cargo)}`}></div>
+                              <span className="text-[11px] font-semibold text-sys-text-muted uppercase leading-tight whitespace-normal break-words text-left flex-1" title={cargo}>
                                 {cargo}: <span className="text-sys-text font-bold">{count as number}</span>
                               </span>
                             </div>
@@ -262,9 +262,9 @@ export default function EstructuraClient({ initialServicios, initialDepartamento
                         <p className="text-xs text-sys-text-muted italic mb-6">No hay personal registrado</p>
                       )}
                       
-                      <div className="mt-auto bg-gray-50 rounded-xl p-3 flex items-center justify-between border border-sys-border/50">
-                        <span className="text-sm font-bold text-sys-text">Total Departamento:</span>
-                        <span className="text-sm font-bold text-sys-primary">{d.empleados ? d.empleados.length : 0}</span>
+                      <div className="mt-auto bg-blue-50/80 rounded-xl p-3.5 flex items-center justify-between border border-blue-100/60 shadow-sm">
+                        <span className="text-sm font-bold text-blue-800">Total Departamento:</span>
+                        <span className="text-lg font-black text-blue-600">{d.empleados ? d.empleados.length : 0}</span>
                       </div>
                     </div>
                   </>
