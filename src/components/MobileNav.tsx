@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, LogOut, LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog } from 'lucide-react'
+import { Menu, X, LogOut, LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, FileText } from 'lucide-react'
 
 export function MobileNav({ rol }: { rol: string }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,6 +17,7 @@ export function MobileNav({ rol }: { rol: string }) {
   if (rol === 'admin') {
     navigation.push({ name: 'Asistencias', href: '/dashboard/asistencias', icon: Clock })
     navigation.push({ name: 'Estructura', href: '/dashboard/estructura', icon: Settings })
+    navigation.push({ name: 'Permisos', href: '/dashboard/permisos', icon: FileText })
     navigation.push({ name: 'Usuarios', href: '/dashboard/usuarios', icon: UserCog })
   }
 
