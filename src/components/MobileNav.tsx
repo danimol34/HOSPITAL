@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, LogOut, LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, FileText } from 'lucide-react'
+import { Menu, X, LogOut, LayoutDashboard, Users, Clock, CalendarDays, Settings, UserCog, FileText, HelpCircle } from 'lucide-react'
 
 export function MobileNav({ rol }: { rol: string }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -68,12 +68,27 @@ export function MobileNav({ rol }: { rol: string }) {
                 })}
               </ul>
               
-              <form action="/auth/signout" method="post" className="mt-8 border-t border-sys-border pt-4">
-                <button className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-bold text-sys-text-muted transition-colors hover:bg-sys-danger/10 hover:text-sys-danger">
-                  <LogOut size={20} />
-                  CERRAR SESIÓN
-                </button>
-              </form>
+              <div className="mt-8 border-t border-sys-border pt-4 flex flex-col gap-4">
+                <div className="rounded-xl border border-sys-border p-4 bg-gray-50/50">
+                  <h4 className="text-sm font-bold text-sys-text mb-1">¿Necesitas ayuda?</h4>
+                  <p className="text-xs text-sys-text-muted mb-3">Consulta nuestras guías o contacta soporte.</p>
+                  <Link 
+                    href="/dashboard/ayuda" 
+                    onClick={() => setIsOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg border border-sys-border bg-white px-3 py-2 text-xs font-semibold text-sys-text hover:bg-gray-50"
+                  >
+                    Ir a ayuda
+                    <HelpCircle size={14} />
+                  </Link>
+                </div>
+
+                <form action="/auth/signout" method="post">
+                  <button className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-bold text-sys-text-muted transition-colors hover:bg-sys-danger/10 hover:text-sys-danger">
+                    <LogOut size={20} />
+                    CERRAR SESIÓN
+                  </button>
+                </form>
+              </div>
             </nav>
           </div>
         </div>
