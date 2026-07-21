@@ -77,7 +77,9 @@ const modules: ModuleContent[] = [
       'Añada una observación opcional si el empleado llegó tarde o tiene justificación.',
       'Presione "Guardar Asistencia" para registrar el día.',
       'Use la pestaña de Reportes para exportar la nómina quincenal.'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/g_ma_VEOWE4',
+    imageUrl: '/tutorial-asistencias.png'
   },
   {
     id: 'estructura',
