@@ -10,6 +10,8 @@ type ModuleContent = {
   color: string
   description: string
   steps: string[]
+  videoUrl?: string
+  imageUrl?: string
 }
 
 const modules: ModuleContent[] = [
@@ -24,7 +26,9 @@ const modules: ModuleContent[] = [
       'En la parte superior, visualice el total de empleados activos y la estructura actual.',
       'Revise el panel de "Próximas Vacaciones" para anticipar ausencias en los siguientes días.',
       'Use los accesos rápidos para ir directamente a la gestión de empleados o estructura.'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/SmhM33Axbho',
+    imageUrl: '/tutorial-inicio.png'
   },
   {
     id: 'empleados',
@@ -202,28 +206,42 @@ export default function AyudaClient() {
             {/* Columna Derecha: Apoyo Visual Multimedia */}
             <div className="lg:col-span-2 flex flex-col gap-6">
               
-              {/* Video Tutorial Placeholder */}
+              {/* Video Tutorial (Real o Placeholder) */}
               <div className="rounded-2xl border border-sys-border bg-white overflow-hidden shadow-sm">
                 <div className="p-4 border-b border-sys-border bg-gray-50/50">
                   <h3 className="text-sm font-bold text-sys-text flex items-center gap-2">
                     <Play size={16} className="text-red-500 fill-red-500" /> Video Tutorial
                   </h3>
                 </div>
-                <div 
-                  className="relative aspect-video bg-gray-900 group cursor-pointer flex items-center justify-center"
-                  onClick={() => alert("Función simulada: El reproductor de video se abrirá aquí próximamente.")}
-                >
-                  <div className="absolute inset-0 bg-sys-primary/20 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity"></div>
-                  <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600/90 text-white shadow-xl group-hover:scale-110 transition-transform">
-                      <Play size={32} className="ml-1" fill="currentColor" />
-                    </div>
-                    <span className="font-bold text-white text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">Ver Video (Próximamente)</span>
+                
+                {selectedModule.videoUrl ? (
+                  <div className="relative aspect-video w-full bg-black">
+                    <iframe 
+                      className="absolute inset-0 w-full h-full" 
+                      src={selectedModule.videoUrl} 
+                      title="YouTube video player" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowFullScreen
+                    ></iframe>
                   </div>
-                </div>
+                ) : (
+                  <div 
+                    className="relative aspect-video bg-gray-900 group cursor-pointer flex items-center justify-center"
+                    onClick={() => alert("Función simulada: El reproductor de video se abrirá aquí próximamente.")}
+                  >
+                    <div className="absolute inset-0 bg-sys-primary/20 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                    <div className="relative z-10 flex flex-col items-center gap-3">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600/90 text-white shadow-xl group-hover:scale-110 transition-transform">
+                        <Play size={32} className="ml-1" fill="currentColor" />
+                      </div>
+                      <span className="font-bold text-white text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">Ver Video (Próximamente)</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Captura de Pantalla Placeholder */}
+              {/* Captura de Pantalla (Real o Placeholder) */}
               <div className="rounded-2xl border border-sys-border bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-sm font-bold text-sys-text flex items-center gap-2">
@@ -232,32 +250,41 @@ export default function AyudaClient() {
                   <span className="text-xs font-semibold text-sys-text-muted bg-gray-100 px-2 py-1 rounded">Captura</span>
                 </div>
                 
-                {/* Mock UI Box */}
-                <div 
-                  className="aspect-[16/9] w-full rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
-                  onClick={() => alert("Función simulada: Al hacer clic aquí se abriría la captura en pantalla completa.")}
-                >
-                  <div className="absolute top-4 left-4 right-4 h-8 bg-white border border-gray-200 rounded flex items-center px-2 gap-2 shadow-sm">
-                    <div className="h-3 w-3 rounded-full bg-red-400"></div>
-                    <div className="h-3 w-3 rounded-full bg-amber-400"></div>
-                    <div className="h-3 w-3 rounded-full bg-emerald-400"></div>
-                    <div className="h-2 w-32 bg-gray-200 rounded ml-4"></div>
+                {selectedModule.imageUrl ? (
+                  <div className="w-full rounded-xl border border-sys-border overflow-hidden bg-gray-50">
+                    <img 
+                      src={selectedModule.imageUrl} 
+                      alt={`Captura de interfaz para ${selectedModule.title}`} 
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
-                  
-                  <ImageIcon size={48} className="text-gray-300 mb-4" />
-                  <p className="text-sm font-bold text-gray-400">Espacio para Captura Explicativa</p>
-                  <p className="text-xs text-gray-400 text-center mt-2 max-w-sm">
-                    Aquí se insertará una imagen real de la interfaz de {selectedModule.title} indicando con flechas dónde hacer clic.
-                  </p>
-                  
-                  {/* Mock Pointer */}
-                  <div className="absolute bottom-1/4 right-1/3 flex flex-col items-center animate-bounce">
-                    <div className="bg-sys-primary text-white text-xs font-bold px-2 py-1 rounded shadow-lg mb-1 relative">
-                      Haz clic aquí
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-sys-primary rotate-45"></div>
+                ) : (
+                  <div 
+                    className="aspect-[16/9] w-full rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+                    onClick={() => alert("Función simulada: Al hacer clic aquí se abriría la captura en pantalla completa.")}
+                  >
+                    <div className="absolute top-4 left-4 right-4 h-8 bg-white border border-gray-200 rounded flex items-center px-2 gap-2 shadow-sm">
+                      <div className="h-3 w-3 rounded-full bg-red-400"></div>
+                      <div className="h-3 w-3 rounded-full bg-amber-400"></div>
+                      <div className="h-3 w-3 rounded-full bg-emerald-400"></div>
+                      <div className="h-2 w-32 bg-gray-200 rounded ml-4"></div>
+                    </div>
+                    
+                    <ImageIcon size={48} className="text-gray-300 mb-4" />
+                    <p className="text-sm font-bold text-gray-400">Espacio para Captura Explicativa</p>
+                    <p className="text-xs text-gray-400 text-center mt-2 max-w-sm">
+                      Aquí se insertará una imagen real de la interfaz de {selectedModule.title} indicando con flechas dónde hacer clic.
+                    </p>
+                    
+                    {/* Mock Pointer */}
+                    <div className="absolute bottom-1/4 right-1/3 flex flex-col items-center animate-bounce">
+                      <div className="bg-sys-primary text-white text-xs font-bold px-2 py-1 rounded shadow-lg mb-1 relative">
+                        Haz clic aquí
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-sys-primary rotate-45"></div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
 
             </div>
