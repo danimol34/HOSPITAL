@@ -94,7 +94,9 @@ const modules: ModuleContent[] = [
       'Dentro de la división, añada los departamentos específicos (Ej: Emergencia, Quirófano).',
       'Revise los "Badges" de la tarjeta para conocer instantáneamente la distribución del personal por cargo.',
       'Utilice los íconos de Lápiz y Papelera para editar o eliminar áreas (tenga cuidado, eliminar un departamento afecta a sus empleados).'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/h9kTQhxHois',
+    imageUrl: '/tutorial-estructura.png'
   },
   {
     id: 'usuarios',
