@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-sys-bg">
+    <div className="flex h-screen overflow-hidden bg-gradient-to-br from-[#f0f7ff] via-[#f8fbff] to-[#e6f0fa]">
       <Sidebar rol={rol} />
       <div className="flex flex-col flex-1 min-w-0 h-screen">
         <TopNavbar />

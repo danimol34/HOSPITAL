@@ -49,14 +49,17 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
   return (
     <div className="flex flex-col gap-6">
       {/* Banner del Hospital */}
-      <div className="relative w-full h-48 md:h-64 rounded-3xl overflow-hidden shadow-xl border border-sys-border bg-white">
-        {/* Imagen de fondo a la derecha */}
+      <div className="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden shadow-xl border border-sys-border bg-gradient-to-r from-blue-900 via-cyan-800 to-blue-900">
+        {/* Patrón médico simulado con CSS o imagen subida por el usuario */}
         <div 
-          className="absolute inset-0 bg-cover bg-right bg-no-repeat"
-          style={{ backgroundImage: "url('/images/hospital-banner.jpg')" }}
+          className="absolute inset-0 bg-cover bg-left opacity-30 mix-blend-overlay"
+          style={{ backgroundImage: "url('/images/medical-pattern.jpg'), radial-gradient(circle, transparent 20%, #000 120%)" }}
         />
-        {/* Gradiente de izquierda a derecha (sólido a transparente) para que el texto sea legible y la imagen se vea */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#003366] via-[#004b99]/90 to-transparent z-0" />
+        {/* Foto del hospital a la derecha */}
+        <div 
+          className="absolute inset-y-0 right-0 w-1/2 bg-cover bg-right bg-no-repeat mask-image-to-l"
+          style={{ backgroundImage: "url('/images/hospital-banner.jpg')", WebkitMaskImage: 'linear-gradient(to left, black 50%, transparent 100%)' }}
+        />
         
         {/* Contenido (Texto) */}
         <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10 w-full md:w-2/3">
@@ -76,9 +79,9 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
 
       {/* Empleados Stats */}
       <div className="grid gap-6 md:grid-cols-3">
-        <div className="flex flex-col rounded-3xl border border-blue-50 bg-white p-6 shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all">
+        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-[0_0_25px_rgba(59,130,246,0.25)] transition-all">
           <div className="flex items-center gap-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/40">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/50">
               <Users size={28} />
             </div>
             <div>
@@ -87,9 +90,9 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
             </div>
           </div>
         </div>
-        <div className="flex flex-col rounded-3xl border border-blue-50 bg-white p-6 shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all">
+        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-[0_0_25px_rgba(59,130,246,0.25)] transition-all">
           <div className="flex items-center gap-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/40">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/50">
               <UserCheck size={28} />
             </div>
             <div>
@@ -98,9 +101,9 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
             </div>
           </div>
         </div>
-        <div className="flex flex-col rounded-3xl border border-red-50 bg-white p-6 shadow-[0_4px_20px_rgba(239,68,68,0.15)] transition-all">
+        <div className="flex flex-col rounded-2xl border border-red-100 bg-white p-6 shadow-[0_0_25px_rgba(239,68,68,0.25)] transition-all">
           <div className="flex items-center gap-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-500 text-white shadow-lg shadow-red-500/40">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-500 text-white shadow-lg shadow-red-500/50">
               <UserX size={28} />
             </div>
             <div>
@@ -113,13 +116,13 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
 
       <div className="grid gap-6 lg:grid-cols-2 mt-4">
         {/* Widget 1: Finalización Próxima */}
-        <div className="flex flex-col rounded-[2rem] border-0 bg-gradient-to-b from-[#e6f0fa] to-[#f5f9ff] p-6 shadow-md shadow-blue-500/5">
+        <div className="flex flex-col rounded-2xl border border-blue-200 bg-[#e0f0ff] p-6 shadow-md shadow-blue-500/10">
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-[#1e3a8a]">Finalización de vacaciones</h2>
               <p className="text-sm text-blue-600 font-semibold mt-1">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/30">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/40">
               <CalendarDays size={22} />
             </div>
           </div>
@@ -128,7 +131,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesActivas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_fin), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100/50">
+                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-white p-5 shadow-sm border border-gray-100">
                     <div>
                       <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
                       <p className="text-sm text-gray-500 font-medium mt-1">Hasta {formatDate(v.fecha_fin)}</p>
@@ -140,7 +143,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <div className="rounded-2xl bg-white py-10 px-6 shadow-sm border border-white flex items-center justify-center text-center">
+              <div className="rounded-xl bg-white py-10 px-6 shadow-sm border border-gray-100 flex items-center justify-center text-center">
                 <p className="text-[15px] text-gray-500 font-medium">No hay finalizaciones en los próximos {daysRange} días.</p>
               </div>
             )}
@@ -148,13 +151,13 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
         </div>
 
         {/* Widget 2: Inicio Próximo */}
-        <div className="flex flex-col rounded-[2rem] border-0 bg-gradient-to-b from-[#e6f0fa] to-[#f5f9ff] p-6 shadow-md shadow-blue-500/5">
+        <div className="flex flex-col rounded-2xl border border-blue-200 bg-[#e0f0ff] p-6 shadow-md shadow-blue-500/10">
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold text-[#1e3a8a]">Inicio de vacaciones</h2>
               <p className="text-sm text-blue-600 font-semibold mt-1">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/30">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/40">
               <ArrowRight size={22} />
             </div>
           </div>
@@ -163,7 +166,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesProximas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_inicio), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100/50">
+                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-white p-5 shadow-sm border border-gray-100">
                     <div>
                       <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
                       <p className="text-sm text-gray-500 font-medium mt-1">Desde {formatDate(v.fecha_inicio)}</p>
@@ -175,7 +178,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <div className="rounded-2xl bg-white py-10 px-6 shadow-sm border border-white flex items-center justify-center text-center">
+              <div className="rounded-xl bg-white py-10 px-6 shadow-sm border border-gray-100 flex items-center justify-center text-center">
                 <p className="text-[15px] text-gray-500 font-medium">No hay inicios programados en los próximos {daysRange} días.</p>
               </div>
             )}
