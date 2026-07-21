@@ -60,7 +60,9 @@ const modules: ModuleContent[] = [
       'Verifique que el estado inicial de la solicitud sea "Pendiente".',
       'Una vez guardado, use el botón de "Imprimir Constancia" (ícono de PDF) para generar el comprobante firmado.',
       'Cambie el estado a "Aprobada" o "En Curso" según corresponda usando las acciones de la tabla.'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/oFE6cAtmKnk',
+    imageUrl: '/tutorial-vacaciones.png'
   },
   {
     id: 'asistencias',
