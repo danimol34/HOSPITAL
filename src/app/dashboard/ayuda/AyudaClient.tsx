@@ -110,7 +110,9 @@ const modules: ModuleContent[] = [
       'Asigne un Nombre, Correo Electrónico y una Contraseña segura.',
       'Seleccione el Nivel de Acceso: Administrador (acceso total) o Visor (solo lectura).',
       'Haga clic en "Guardar". Nota: Por seguridad, la eliminación de cuentas maestras está restringida, pero puede deshabilitar sus accesos.'
-    ]
+    ],
+    videoUrl: 'https://www.youtube.com/embed/1gIeM5qKWks',
+    imageUrl: '/tutorial-usuarios.png'
   }
 ]
 
