@@ -135,12 +135,13 @@ export default function AyudaClient() {
           </p>
         </div>
         
-        <button 
+        <a 
+          href="/manual_de_usuario.pdf"
+          download="Manual_de_Usuario_Hospital.pdf"
           className="flex shrink-0 items-center gap-2 rounded-xl bg-sys-primary px-5 py-2.5 text-sm font-bold text-white shadow-md hover:bg-sys-primary-hover transition-colors"
-          onClick={() => alert("Función simulada: Iniciando descarga del Manual Completo en PDF...")}
         >
           <Download size={18} /> Descargar Manual PDF
-        </button>
+        </a>
       </div>
 
       {/* Navegación Dinámica */}
