@@ -44,7 +44,7 @@ const modules: ModuleContent[] = [
       'Para editar o ver el perfil detallado, haga clic en el nombre de cualquier empleado en la tabla.',
       'Utilice el buscador superior para encontrar a un trabajador rápidamente por nombre o cédula.'
     ],
-    videoUrl: 'https://www.youtube.com/embed/BJ9y_qX90hM',
+    videoUrl: 'https://www.youtube.com/embed/0vI54ydmCBA',
     imageUrl: '/tutorial-empleados.png'
   },
   {
