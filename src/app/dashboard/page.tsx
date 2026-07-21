@@ -49,68 +49,73 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
   return (
     <div className="flex flex-col gap-6">
       {/* Banner del Hospital */}
-      <div className="relative w-full h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg border border-sys-border">
-        <img 
-          src="/images/hospital-banner.jpg" 
-          alt="Hospital Nuestra Señora del Carmen" 
-          className="w-full h-full object-cover"
+      <div className="relative w-full h-48 md:h-64 rounded-3xl overflow-hidden shadow-xl border border-sys-border bg-gradient-to-r from-blue-700 to-cyan-500">
+        <div 
+          className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-40"
+          style={{ backgroundImage: "url('/images/hospital-banner.jpg')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-sys-primary-dark/80 to-transparent flex flex-col justify-center p-6 md:p-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-white drop-shadow-md">
+        <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md tracking-tight">
             Hospital Nuestra Señora del Carmen
           </h2>
-          <p className="text-white/90 mt-2 font-medium">Sistema Administrativo de Recursos Humanos</p>
+          <p className="text-white/90 mt-3 text-lg md:text-xl font-medium drop-shadow-sm">Sistema Administrativo de Recursos Humanos</p>
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-        <div>
-          <h1 className="text-xl font-bold text-sys-text">Resumen General</h1>
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center mt-4">
+        <h1 className="text-2xl font-bold text-sys-text">Resumen General</h1>
+        <div className="flex-shrink-0">
+          <DashboardSelector />
         </div>
-        <DashboardSelector />
       </div>
 
       {/* Empleados Stats */}
       <div className="grid gap-6 md:grid-cols-3">
-        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-            <Users size={24} />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-sys-text-muted">Total Empleados</p>
-            <p className="text-2xl font-bold text-sys-text">{totalEmpleados}</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-            <UserCheck size={24} />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-sys-text-muted">Activos</p>
-            <p className="text-2xl font-bold text-sys-text">{activos}</p>
+        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-500/5 transition-all hover:shadow-blue-500/10">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/20">
+              <Users size={24} />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-500">Total Empleados</p>
+              <p className="text-3xl font-extrabold text-gray-900">{totalEmpleados}</p>
+            </div>
           </div>
         </div>
-        <div className="flex items-center gap-4 rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-sm">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-rose-600">
-            <UserX size={24} />
+        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-500/5 transition-all hover:shadow-blue-500/10">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-600/20">
+              <UserCheck size={24} />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-500">Activos</p>
+              <p className="text-3xl font-extrabold text-gray-900">{activos}</p>
+            </div>
           </div>
-          <div>
-            <p className="text-sm font-medium text-sys-text-muted">Inactivos</p>
-            <p className="text-2xl font-bold text-sys-text">{inactivos}</p>
+        </div>
+        <div className="flex flex-col rounded-2xl border border-red-100 bg-white p-6 shadow-lg shadow-red-500/5 transition-all hover:shadow-red-500/10">
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white shadow-md shadow-red-500/20">
+              <UserX size={24} />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-500">Inactivos</p>
+              <p className="text-3xl font-extrabold text-gray-900">{inactivos}</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Widget 1: Finalización Próxima */}
-        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-md">
+        <div className="flex flex-col rounded-3xl border border-blue-100 bg-blue-50 p-6 shadow-md">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold text-sys-text">Finalización de vacaciones</h2>
-              <p className="text-xs text-sys-text-muted font-semibold">Próximos {daysRange} días</p>
+              <h2 className="text-xl font-bold text-blue-900">Finalización de vacaciones</h2>
+              <p className="text-sm text-blue-700/80 font-semibold">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-primary-transparent text-sys-primary">
-              <CalendarDays size={20} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm shadow-blue-500/20">
+              <CalendarDays size={24} />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -118,32 +123,34 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesActivas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_fin), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-sys-bg p-4 border border-sys-border">
+                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
                     <div>
-                      <p className="font-semibold text-sys-text">{v.empleados.nombres} {v.empleados.apellidos}</p>
-                      <p className="text-xs text-sys-text-muted">Hasta {formatDate(v.fecha_fin)}</p>
+                      <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
+                      <p className="text-sm text-gray-500 font-medium mt-1">Hasta {formatDate(v.fecha_fin)}</p>
                     </div>
-                    <div className="rounded-lg bg-sys-admin/10 px-3 py-1.5 text-sm font-bold text-sys-admin">
+                    <div className="rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 border border-blue-100">
                       Regresa en {days} días
                     </div>
                   </div>
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-muted font-semibold text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay finalizaciones en los próximos {daysRange} días.</p>
+              <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 flex items-center justify-center text-center">
+                <p className="text-sm text-gray-500 font-semibold">No hay finalizaciones en los próximos {daysRange} días.</p>
+              </div>
             )}
           </div>
         </div>
 
         {/* Widget 2: Inicio Próximo */}
-        <div className="flex flex-col rounded-2xl border border-sys-border bg-sys-panel p-6 shadow-md">
+        <div className="flex flex-col rounded-3xl border border-blue-100 bg-blue-50 p-6 shadow-md">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold text-sys-text">Inicio de vacaciones</h2>
-              <p className="text-xs text-sys-text-muted font-semibold">Próximos {daysRange} días</p>
+              <h2 className="text-xl font-bold text-blue-900">Inicio de vacaciones</h2>
+              <p className="text-sm text-blue-700/80 font-semibold">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sys-visor/10 text-sys-visor">
-              <ArrowRight size={20} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm shadow-blue-500/20">
+              <ArrowRight size={24} />
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -151,19 +158,21 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
               vacacionesProximas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_inicio), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-xl bg-sys-bg p-4 border border-sys-border">
+                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
                     <div>
-                      <p className="font-semibold text-sys-text">{v.empleados.nombres} {v.empleados.apellidos}</p>
-                      <p className="text-xs text-sys-text-muted">Desde {formatDate(v.fecha_inicio)}</p>
+                      <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
+                      <p className="text-sm text-gray-500 font-medium mt-1">Desde {formatDate(v.fecha_inicio)}</p>
                     </div>
-                    <div className="rounded-lg bg-sys-visor/10 px-3 py-1.5 text-sm font-bold text-sys-visor">
+                    <div className="rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 border border-blue-100">
                       Inicia en {days} días
                     </div>
                   </div>
                 )
               })
             ) : (
-              <p className="text-sm text-sys-text-muted font-semibold text-center py-8 bg-sys-bg rounded-xl border border-dashed border-sys-border">No hay inicios programados en los próximos {daysRange} días.</p>
+              <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 flex items-center justify-center text-center">
+                <p className="text-sm text-gray-500 font-semibold">No hay inicios programados en los próximos {daysRange} días.</p>
+              </div>
             )}
           </div>
         </div>
