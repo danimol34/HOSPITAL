@@ -49,16 +49,21 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
   return (
     <div className="flex flex-col gap-6">
       {/* Banner del Hospital */}
-      <div className="relative w-full h-48 md:h-64 rounded-3xl overflow-hidden shadow-xl border border-sys-border bg-gradient-to-r from-blue-700 to-cyan-500">
+      <div className="relative w-full h-48 md:h-64 rounded-3xl overflow-hidden shadow-xl border border-sys-border bg-white">
+        {/* Imagen de fondo a la derecha */}
         <div 
-          className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-40"
+          className="absolute inset-0 bg-cover bg-right bg-no-repeat"
           style={{ backgroundImage: "url('/images/hospital-banner.jpg')" }}
         />
-        <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white drop-shadow-md tracking-tight">
+        {/* Gradiente de izquierda a derecha (sólido a transparente) para que el texto sea legible y la imagen se vea */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#003366] via-[#004b99]/90 to-transparent z-0" />
+        
+        {/* Contenido (Texto) */}
+        <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 z-10 w-full md:w-2/3">
+          <h2 className="text-3xl md:text-5xl font-bold text-white drop-shadow-lg tracking-wide font-serif">
             Hospital Nuestra Señora del Carmen
           </h2>
-          <p className="text-white/90 mt-3 text-lg md:text-xl font-medium drop-shadow-sm">Sistema Administrativo de Recursos Humanos</p>
+          <p className="text-white/90 mt-3 text-lg md:text-xl font-medium drop-shadow-md">Sistema Administrativo de Recursos Humanos</p>
         </div>
       </div>
 
@@ -71,59 +76,59 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
 
       {/* Empleados Stats */}
       <div className="grid gap-6 md:grid-cols-3">
-        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-500/5 transition-all hover:shadow-blue-500/10">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/20">
-              <Users size={24} />
+        <div className="flex flex-col rounded-3xl border border-blue-50 bg-white p-6 shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all">
+          <div className="flex items-center gap-5">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/40">
+              <Users size={28} />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-500">Total Empleados</p>
-              <p className="text-3xl font-extrabold text-gray-900">{totalEmpleados}</p>
+              <p className="text-sm font-bold text-gray-500">Total Empleados</p>
+              <p className="text-3xl font-extrabold text-gray-900 mt-1">{totalEmpleados}</p>
             </div>
           </div>
         </div>
-        <div className="flex flex-col rounded-2xl border border-blue-100 bg-white p-6 shadow-lg shadow-blue-500/5 transition-all hover:shadow-blue-500/10">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-600/20">
-              <UserCheck size={24} />
+        <div className="flex flex-col rounded-3xl border border-blue-50 bg-white p-6 shadow-[0_4px_20px_rgba(59,130,246,0.15)] transition-all">
+          <div className="flex items-center gap-5">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-600/40">
+              <UserCheck size={28} />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-500">Activos</p>
-              <p className="text-3xl font-extrabold text-gray-900">{activos}</p>
+              <p className="text-sm font-bold text-gray-500">Activos</p>
+              <p className="text-3xl font-extrabold text-gray-900 mt-1">{activos}</p>
             </div>
           </div>
         </div>
-        <div className="flex flex-col rounded-2xl border border-red-100 bg-white p-6 shadow-lg shadow-red-500/5 transition-all hover:shadow-red-500/10">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-500 text-white shadow-md shadow-red-500/20">
-              <UserX size={24} />
+        <div className="flex flex-col rounded-3xl border border-red-50 bg-white p-6 shadow-[0_4px_20px_rgba(239,68,68,0.15)] transition-all">
+          <div className="flex items-center gap-5">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-red-500 text-white shadow-lg shadow-red-500/40">
+              <UserX size={28} />
             </div>
             <div>
-              <p className="text-sm font-semibold text-gray-500">Inactivos</p>
-              <p className="text-3xl font-extrabold text-gray-900">{inactivos}</p>
+              <p className="text-sm font-bold text-gray-500">Inactivos</p>
+              <p className="text-3xl font-extrabold text-gray-900 mt-1">{inactivos}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2 mt-4">
         {/* Widget 1: Finalización Próxima */}
-        <div className="flex flex-col rounded-3xl border border-blue-100 bg-blue-50 p-6 shadow-md">
+        <div className="flex flex-col rounded-[2rem] border-0 bg-gradient-to-b from-[#e6f0fa] to-[#f5f9ff] p-6 shadow-md shadow-blue-500/5">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-blue-900">Finalización de vacaciones</h2>
-              <p className="text-sm text-blue-700/80 font-semibold">Próximos {daysRange} días</p>
+              <h2 className="text-xl font-bold text-[#1e3a8a]">Finalización de vacaciones</h2>
+              <p className="text-sm text-blue-600 font-semibold mt-1">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm shadow-blue-500/20">
-              <CalendarDays size={24} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/30">
+              <CalendarDays size={22} />
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-2">
             {vacacionesActivas && vacacionesActivas.length > 0 ? (
               vacacionesActivas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_fin), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
+                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100/50">
                     <div>
                       <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
                       <p className="text-sm text-gray-500 font-medium mt-1">Hasta {formatDate(v.fecha_fin)}</p>
@@ -135,30 +140,30 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 flex items-center justify-center text-center">
-                <p className="text-sm text-gray-500 font-semibold">No hay finalizaciones en los próximos {daysRange} días.</p>
+              <div className="rounded-2xl bg-white py-10 px-6 shadow-sm border border-white flex items-center justify-center text-center">
+                <p className="text-[15px] text-gray-500 font-medium">No hay finalizaciones en los próximos {daysRange} días.</p>
               </div>
             )}
           </div>
         </div>
 
         {/* Widget 2: Inicio Próximo */}
-        <div className="flex flex-col rounded-3xl border border-blue-100 bg-blue-50 p-6 shadow-md">
+        <div className="flex flex-col rounded-[2rem] border-0 bg-gradient-to-b from-[#e6f0fa] to-[#f5f9ff] p-6 shadow-md shadow-blue-500/5">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-bold text-blue-900">Inicio de vacaciones</h2>
-              <p className="text-sm text-blue-700/80 font-semibold">Próximos {daysRange} días</p>
+              <h2 className="text-xl font-bold text-[#1e3a8a]">Inicio de vacaciones</h2>
+              <p className="text-sm text-blue-600 font-semibold mt-1">Próximos {daysRange} días</p>
             </div>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm shadow-blue-500/20">
-              <ArrowRight size={24} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-md shadow-blue-500/30">
+              <ArrowRight size={22} />
             </div>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 mt-2">
             {vacacionesProximas && vacacionesProximas.length > 0 ? (
               vacacionesProximas.map((v) => {
                 const days = Math.max(0, differenceInDays(parseISO(v.fecha_inicio), today))
                 return (
-                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100">
+                  <div key={v.id} className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-gray-100/50">
                     <div>
                       <p className="font-bold text-gray-900">{v.empleados.nombres} {v.empleados.apellidos}</p>
                       <p className="text-sm text-gray-500 font-medium mt-1">Desde {formatDate(v.fecha_inicio)}</p>
@@ -170,8 +175,8 @@ export default async function DashboardPage(props: { searchParams: Promise<{ day
                 )
               })
             ) : (
-              <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 flex items-center justify-center text-center">
-                <p className="text-sm text-gray-500 font-semibold">No hay inicios programados en los próximos {daysRange} días.</p>
+              <div className="rounded-2xl bg-white py-10 px-6 shadow-sm border border-white flex items-center justify-center text-center">
+                <p className="text-[15px] text-gray-500 font-medium">No hay inicios programados en los próximos {daysRange} días.</p>
               </div>
             )}
           </div>
