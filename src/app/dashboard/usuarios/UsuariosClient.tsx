@@ -82,6 +82,7 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
       const res = await removeUser(id)
       if (res.success) {
         setUsuarios(usuarios.filter(u => u.id !== id))
+        setIsDetailsOpen(false)
       } else {
         alert('Error al eliminar usuario: ' + res.error)
       }
@@ -149,7 +150,16 @@ export default function UsuariosClient({ initialUsuarios }: { initialUsuarios: a
           <div className="flex w-full max-w-5xl flex-col bg-sys-bg shadow-2xl animate-in slide-in-from-right">
             <div className="flex items-center justify-between border-b border-sys-border p-6">
               <h2 className="text-xl font-bold text-sys-text">Perfil de Usuario</h2>
-              <button onClick={() => setIsDetailsOpen(false)} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => handleDelete(selectedUsuario.id)}
+                  className="flex items-center gap-2 rounded-lg bg-red-500/10 px-3 py-1.5 text-sm font-medium text-red-500 hover:bg-red-500/20 transition-colors"
+                >
+                  <Trash2 size={16} />
+                  Eliminar
+                </button>
+                <button onClick={() => setIsDetailsOpen(false)} className="text-sys-text-muted font-semibold hover:text-sys-text">✕</button>
+              </div>
             </div>
             
             <div className="flex flex-1 flex-col overflow-y-auto p-6 md:flex-row md:gap-8">
